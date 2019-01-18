@@ -333,54 +333,18 @@
       
         
           
-            <h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><pre><code>[拥有特殊含义的元字符]
+          元字符[拥有特殊含义的元字符]
 \d -&gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&gt;匹配一个除了0-9的任意字符
 \w -&gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_]
-\s -&gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...)
-\b -&gt; 匹配一个单词的边界********* 开头结尾和空格
-\t -&gt; 匹配一个制表符
-\n -&gt; 匹配一个换行符控制台换行。页面中不能换行。
-. -&gt; 匹配一个除了\n以外的任意字符
-^ -&gt; 以某一个元字符开头
-$ -&gt; 以某一个元字符结尾
-\ -&gt; 转义字符
-x|y -&gt; x或者y的一个
-[xyz] -&gt; x、y、z中的任意一个
-[^xyz] -&gt; 除了xyz中的任意一个字符
-[a-z] -&gt; 匹配a-z中的任意一个字符
-[^a-z] -&gt; 匹配除了a-z中的任意一个字符
-() -&gt; 正则中的分组
-</code></pre><p><strong>注意:</strong><br>    1)关于[]<br>        a、[+] -&gt;中括号中出现的所有字符都代表的是本身的意思<br>        b、[12-65] -&gt;这个不是12-65而是1/2-6/5三者中的一个</p>
-<pre><code>2)关于()
-    a、分组的作用是改变默认的优先级,例如:/^18|19$/,181、189、119、819、1819...都符合,
-    而不是我们认为的18或19,但是改成/^(18|19)$/就是单纯的18或19了
-
-    b、可以在捕获大正则匹配的内容同时,把分组匹配的内容也进行捕获-&gt;分组捕获
-
-    c、分组引用,例如:/^(\d)(\w)\2\1$/,这里的\2是和第二个分组出现一模样的内容,
-    \1是和第一个分组出现一模一样的内容,例如:&quot;0aa0&quot;就符合了
-</code></pre><p>  [代表数量的量词元字符]<br>  * -&gt; 0到多个<br>  + -&gt; 1到多个<br>  ? -&gt; 0到1个<br>  {n} -&gt; 出现n次<br>  {n,} -&gt; 出现n到多次<br>  {n,m} -&gt; 出现n到m次</p>
-<p>  <strong>注意:</strong><br>  1)关于?的几种情况<br>    a、放在非量词元字符后面,代表出现0-1次</p>
-<pre><code>b、放在量词元字符后面,代表取消捕获时候的贪婪性,例如:reg=/\d+/; reg.exec(&quot;2015&quot;) -&gt; &quot;2015&quot; 但是如果正则这样写 reg=/\d+?/; reg.exec(&quot;2015&quot;) -&gt; &quot;2&quot;
-
-c、在分组开头加?:,代表当前的分组只是匹配不进行捕获,例如:/^(?:\d+)$/
-
-d、在分组开头加?=,正向预查,例如:/^zhufeng(?=1|2)$/ 只有&quot;zhufeng1&quot;和&quot;zhufeng2&quot;才符合
-
-e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhufeng1&quot;和&quot;zhufeng2&quot;不符合,其他的只要是&quot;zhufeng(任何的东西)&quot;都符合
-</code></pre><p>  [代表本身意思的元字符]<br>  除了以上的,在字面量方式中,我们出现的其他任意字符代表的都是自己本身的意思<br>  <code>var num=12;
-   var reg=/^\w&quot;+num+&quot;$/;</code><br>   -&gt;这里”+num+”不是把变量的值拼接,而这里的不管是”还是+都是元字符<br>   -&gt;对于需要拼接字符串和变量的方式我们只能使用实例方式创建正则</p>
-<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><p>  i -&gt; ignoreCase 忽略字母的大小写<br>  g -&gt; global 全局匹配 (加上g可以解决正则捕获时候的懒惰性)<br>  m -&gt; multiline 多行匹配</p>
-<h2 id="项目中常用的正则"><a href="#项目中常用的正则" class="headerlink" title="项目中常用的正则"></a>项目中常用的正则</h2><p>  1)有效数字的<br>  <code>var reg=/^[+-]?(\d|([1-9]\d+))(\.\d+)?$/;</code></p>
-<p>  2)邮箱的<br>  <code>var reg = /^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;</code></p>
-<p>  3)电话的<br>  <code>var reg = /^1\d{10}$/;</code></p>
-<p>  4)年龄在18-65之间的<br>  <code>var reg = /^((18|19)|([2-5]\d)|(6[0-5]))$/;</code></p>
-<p>  5)中文姓名<br>  <code>var reg = /^[\u4e00-\u9fa5]{2,4}$/;</code></p>
-<p>  6)身份证<br>  <code>var reg = /^(\d{6})(\d{4})(\d{2})(\d{2})(?:\d{2})(\d)(?:\d|X)$/;</code><br>  //-&gt; 130524(省市县) 1994(年) 02(月) 03(日) 30 3(奇数是男偶数是女) 1(数字或者X)</p>
-<h2 id="正则的匹配"><a href="#正则的匹配" class="headerlink" title="正则的匹配"></a>正则的匹配</h2><p>  reg.test([string]) -&gt;true就是匹配成功  false-&gt;匹配不成功</p>
-<h2 id="正则的捕获"><a href="#正则的捕获" class="headerlink" title="正则的捕获"></a>正则的捕获</h2><p>  1)reg.exec([string])<br>    -&gt; 首先去匹配,匹配成功在捕获,返回的是一个数组; 如果匹配不成功返回的是null;<br>    -&gt; 正则的捕获即懒惰又贪婪<br>    -&gt; 解决懒惰性 在正则的末尾增加全局修饰符g<br>    -&gt; 解决贪婪性 在量词后面加?</p>
-
-          
+\s -&gt; 匹配一个空白字符(空格、制表符(ta
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/18/regular/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -520,132 +484,16 @@ e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhuf
       
         
           
-            <p><img src="https://image-static.segmentfault.com/101/495/1014955909-5c368e6aad795" alt="blockchain"></p>
-<p>今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。</p>
-<p>你可以将 API 想象成一个酒保。你向酒保要一杯酒，他们会给你想要的。简单，但是传统的 REST API 有什么问题的呢？</p>
-<p>自从现代 Web 出现以来，构建 Api 并不像听起来那么困难，但是学习和理解 Api 才是比较难。开发人员是大多数据使用你的 API 来构建某些内容或仅使用数据。所以你的 API 应该尽可能的简洁和直观， 好的 API 是非常容易使用和学习的。直观，在开始设计 API 时常要记住的一点。</p>
-<p>我们已经使用 REST 构建 Api 很长时间了。随之而来的也有一些问题，在使用 REST 设计构建 API 时，你会遇到以下问题:</p>
-<p>涉及很多端于开发人员来说，学习和理解你的 API 要困难得多 信息的获取有多有少</p>
-<p>为了解决这些问题，Facebook 创建了 GraphQL。现在，作者认为 GraphQL 是构建 Api 的最佳方式。这篇文章将告诉你为什么要学习了解一下 GraphQL。</p>
-<h2 id="什么是-GraphQL"><a href="#什么是-GraphQL" class="headerlink" title="什么是 GraphQL"></a>什么是 GraphQL</h2><p>GraphQL 是 Facebook 开发的一种开源查询语言。它为我们提供了一种更有效的设计、创建和使用 Api的方法。从根本上说，它是 REST 的替代品。</p>
-<p>GraphQL有很多特性，比如:</p>
-<p>GraphQL查询总是能准确获得你想要的数据，不多不少，所以返回的结果是可预测的， 不再像你使用 REST 那样过度获取信息。</p>
-<p>它为我们提供了同一个端，对于同一个 API，没有版本2或版本3。给 GraphQL API 添加字段和类型而无需影响现有查询，老旧字段可以废弃，从工具中隐藏。</p>
-<p>GraphQL是强类型的，通过它，可以在执行之前验证 GraphQL 类型系统中的查询， 它帮助我们构建更强大的 Api</p>
-<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p><code>mkdir graphql-server
-npm init -y</code></p>
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p><code>npm install --save-dev graphpack</code></p>
-<h3 id="配置运行脚本-package-json"><a href="#配置运行脚本-package-json" class="headerlink" title="配置运行脚本 package.json"></a>配置运行脚本 package.json</h3><p>“scripts”: {<br>    “dev”: “graphpack”,<br>    “build”: “graphpack build”<br>}</p>
-<h3 id="根目录下创建src-并创建schema-graphql-文件"><a href="#根目录下创建src-并创建schema-graphql-文件" class="headerlink" title="根目录下创建src 并创建schema.graphql 文件"></a>根目录下创建src 并创建schema.graphql 文件</h3><p><code>type Query {
-  hello: String
-}</code><br>type 是graphql的语法 后面我们介绍<br>在 schema.graphql 文件将是我们的整个 GraphQL的模式(Schema)</p>
-<h2 id="创建db-js-我们用来模拟数据库"><a href="#创建db-js-我们用来模拟数据库" class="headerlink" title="创建db.js 我们用来模拟数据库"></a>创建db.js 我们用来模拟数据库</h2><p><code>export let users = [
-  { id: 1, name: &quot;John Doe&quot;, email: &quot;john@gmail.com&quot;, age: 22 },
-  { id: 2, name: &quot;Jane Doe&quot;, email: &quot;jane@gmail.com&quot;, age: 23 }
-];</code></p>
-<h3 id="src下创建resolvers-js"><a href="#src下创建resolvers-js" class="headerlink" title="src下创建resolvers.js"></a>src下创建resolvers.js</h3><p><code>import { users } from &quot;./db&quot;;
-const resolvers = {
-  Query: {
-    hello: () =&gt; &quot;Hello World!&quot;
-  }
-};
-export default resolvers;</code><br>resolvers.js 文件是我们提供 GraphQL 操作转换为数据的指令的方式</p>
-<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p><code>npm run dev</code><br><strong>打开<a href="http://localhost:4000会看到以下页面" target="_blank" rel="noopener">http://localhost:4000会看到以下页面</a></strong><br><img src="https://segmentfault.com/img/bVbm34s?w=1301&amp;h=944" alt="blockchain"></p>
-<h3 id="类型（Type）"><a href="#类型（Type）" class="headerlink" title="类型（Type）"></a>类型（Type）</h3><p>类型是 GraphQL 最重要的特性之一。类型是表示 API 外观的自定义对象</p>
-<p>例如，我们要创建一个 User 类型，我们应该有一些 name，email 和 age 字段。 类型字段可以是任何类型，并始终返回一种数据类型，如 Int，Float，String，Boolean，ID，对象类型列表或自定义对象类型</p>
-<p>现在编写第一个type<br><code>type User {
-  id: ID!
-  name: String!
-  email: String!
-  age: Int
-}</code><br>字段结尾的 ！呢？ 感叹号表示字段不可为空</p>
-<h3 id="在GraphQL中，有三个主要概念"><a href="#在GraphQL中，有三个主要概念" class="headerlink" title="在GraphQL中，有三个主要概念:"></a>在GraphQL中，有三个主要概念:</h3><p><strong>query (查询) — 从服务器获取数据的方式</strong><br><strong>mutation (更改) — 修改服务器上的数据并获取更新数据的方法(创建、更新、删除)**</strong><br><strong>**subscription (订阅) — 当希望数据更改时，可以进行消息推送，使用 subscription 类型（针对当前的日趋流行的 real-time 应用提出的）</strong></p>
-<h3 id="query-查询"><a href="#query-查询" class="headerlink" title="query (查询)"></a>query (查询)</h3><p><code>type Query {
-  users: [User!]!
-}</code><br>用户查询将返回给我们一个或多个用户的数组。 它不会返回 null，因为我们放入了 ! ，这意味着它是一个不可为空的查询, 它总会返回一些数据<br>也可以查询固定id用户<br><code>user(id: ID!): User!</code></p>
-<p>现在你的代码是这样的<br><code>type Query {
-  users: [User!]!
-  user(id: ID!): User!
-}</code></p>
-<h3 id="你可能想知道-GraphQL-如何知道从哪里获取数据-这就是为什么我们应该有一个-resolvers-js-文件"><a href="#你可能想知道-GraphQL-如何知道从哪里获取数据-这就是为什么我们应该有一个-resolvers-js-文件" class="headerlink" title="你可能想知道: GraphQL 如何知道从哪里获取数据? 这就是为什么我们应该有一个 resolvers.js 文件"></a>你可能想知道: GraphQL 如何知道从哪里获取数据? 这就是为什么我们应该有一个 resolvers.js 文件</h3><p>resolvers.js 文件内容如下</p>
-<p>`import { users } from “./db”;</p>
-<p>const resolvers = {<br>  Query: {<br>    hello: () =&gt; “Hello World!”<br>  }<br>};</p>
-<p>export default resolvers;`</p>
-<h3 id="现在我们新建一个query查询"><a href="#现在我们新建一个query查询" class="headerlink" title="现在我们新建一个query查询"></a>现在我们新建一个query查询</h3><p>`import { users } from “./db”;</p>
-<p>const resolvers = {<br>  Query: {<br>    user: (parent, { id }, context, info) =&gt; {<br>      return users.find(user =&gt; user.id == id);<br>    },<br>    users: (parent, args, context, info) =&gt; {<br>      return users;<br>    }<br>  }<br>};<br>export default resolvers;`</p>
-<p>现在，解释它是如何工作的：</p>
-<p>每个查询解析器都有四个参数。 在 user 函数中，我们将 id 作为参数传递，然后返回与传递的 id 匹配的特定 user，这很简单。</p>
-<p>在 users 函数中，我们只是返回已存在的 users 数组，这个数组存放的是所有的用户</p>
-<p>现在，我们将测试查询是否工作正常，转到 localhost:4000，输入以下代码</p>
-<p><code>query {
-  users {
-    id
-    name
-    email
-    age
-  }
-}</code></p>
-<p>如下图  你就成功啦<br><img src="https://segmentfault.com/img/bVbm35o?w=1236&amp;h=552" alt="blockchain"></p>
-<p><strong>如果想返回特定的用户</strong><br><code>query {
-  user(id: 1) {
-    id
-    name
-    email
-    age
-  }
-}</code><br>如又下图  你就又成功啦<br><img src="https://segmentfault.com/img/bVbm37L?w=1204&amp;h=486" alt="blockchain"></p>
-<h3 id="mutation-更改"><a href="#mutation-更改" class="headerlink" title="mutation (更改)"></a>mutation (更改)</h3><p>在 schema.graphql文件中编写一个名为mutation 的新类型</p>
-<p><code>type Mutation {
-  createUser(id: ID!, name: String!, email: String!, age: Int): User!
-  updateUser(id: ID!, name: String, email: String, age: Int): User!
-  deleteUser(id: ID!): User!
-}</code></p>
-<p>这里主要定义三个修改数据的方法：<br>createUser：传入需要创建用户的 ID，name，email 和 age，它会返回一个新用户给我们<br>updateUser：传入需要修改用户的 ID，name，email 和 age(非必传)，它会返回一个新用户给我们<br>deleteUser: 传入需要删除用户的 ID，它会返回一个新用户给我们</p>
-<p>现在我们要更改一下resolvers.js  文件内容如下<br>`import { users } from “./db”;<br>const resolvers = {<br>  Query: {<br>    user: (parent, { id }, context, info) =&gt; {<br>      return users.find(user =&gt; user.id == id);<br>    },<br>    users: (parent, args, context, info) =&gt; {<br>      return users;<br>    }<br>  },<br>  Mutation: {<br>    createUser: (parent, { id, name, email, age }, context, info) =&gt; {<br>      const newUser = { id, name, email, age };</p>
-<pre><code>  users.push(newUser);
-
-  return newUser;
-},
-updateUser: (parent, { id, name, email, age }, context, info) =&gt; {
-  let newUser = users.find(user =&gt; user.id === id);
-
-  newUser.name = name;
-  newUser.email = email;
-  newUser.age = age;
-
-  return newUser;
-},
-deleteUser: (parent, { id }, context, info) =&gt; {
-  const userIndex = users.findIndex(user =&gt; user.id === id);
-
-  if (userIndex === -1) throw new Error(&quot;User not found.&quot;);
-
-  const deletedUsers = users.splice(userIndex, 1);
-
-  return deletedUsers[0];
-}
-</code></pre><p>  }<br>};<br>export default resolvers;`</p>
-<p><strong>测试我们的 mutations 是否正常</strong><br>在界面输入<br><code>mutation {
-  createUser(id: 3, name: &quot;Robert&quot;, email: &quot;robert@gmail.com&quot;, age: 21) {
-    id
-    name
-    email
-    age
-  }
-}</code></p>
-<p><img src="https://segmentfault.com/img/bVbm4ch?w=1303&amp;h=420" alt="blockchain"></p>
-<h3 id="subscription-订阅"><a href="#subscription-订阅" class="headerlink" title="subscription (订阅)"></a>subscription (订阅)</h3><p><code>subscription {
-  users {
-    id
-    name
-    email
-    age
-  }
-}</code><br>是不是感觉和query查询一样呢？是的， 但它的工作方式不同。</p>
-<p>当服务器中发生更新时，服务器将运行订阅中指定的 GraphQL 查询，并向客户机发送一个新更新的结果<br>在这篇文章中，我们不打算讨论订阅，如果你感兴趣，请移步<a href="https://graphql.org/" target="_blank" rel="noopener">这里</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如你所见，GraphQL 是一项非常强大的新技术。 它为我们提供了构建更好和精心设计的API的真正能力。 这就是为什么作者建议你现在开始学习它，从本文本作者的角度来说，它最终将取代 REST</p>
-
           
+今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/18/graphql/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -763,31 +611,31 @@ deleteUser: (parent, { id }, context, info) =&gt; {
           
           
             <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" rel="gallery_cjr1w5ive0005te3kqt83be5u" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" rel="gallery_cjr1w9xdl0003x93kpcnfrk2l" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" itemprop="contentUrl">
               </a>
             
           
             
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" rel="gallery_cjr1w5ive0005te3kqt83be5u" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" rel="gallery_cjr1w9xdl0003x93kpcnfrk2l" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" itemprop="contentUrl">
               </a>
             
           
             
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_cjr1w5ive0005te3kqt83be5u" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_cjr1w9xdl0003x93kpcnfrk2l" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" itemprop="contentUrl">
               </a>
             </div>
           
             <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" rel="gallery_cjr1w5ive0005te3kqt83be5u" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" rel="gallery_cjr1w9xdl0003x93kpcnfrk2l" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" itemprop="contentUrl">
               </a>
             
           
             
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_cjr1w5ive0005te3kqt83be5u" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_cjr1w9xdl0003x93kpcnfrk2l" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" itemprop="contentUrl">
               </a>
             
@@ -947,71 +795,19 @@ deleteUser: (parent, { id }, context, info) =&gt; {
       
         
           
-            <h5 id="gulp-是一个自动化工具，前端开发者可以使用它来处理常见任务："><a href="#gulp-是一个自动化工具，前端开发者可以使用它来处理常见任务：" class="headerlink" title="gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务："></a>gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务：</h5><p>搭建web服务器<br>文件保存时自动重载浏览器<br>使用预处理器如Sass、LESS<br>优化资源，比如压缩CSS、JavaScript、压缩图片</p>
-<h2 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h2><pre><code>`npm install gulp -g`
+          gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务：搭建web服务器文件保存时自动重载浏览器使用预处理器如Sass、LESS优化资源，比如压缩CSS、JavaScript、压缩图片
+1、安装`npm install gulp -g`
 
  安装依赖
- `npm install gulp--save-dev`
-</code></pre><h2 id="2、使用"><a href="#2、使用" class="headerlink" title="2、使用"></a>2、使用</h2><pre><code>创建gulpfile.js文件
-
-`var gulp=require(&quot;gulp&quot;);
-gulp.task(&quot;default&quot;,function(){
-   console.log(&quot;hello,world&quot;)
-})`
-
-运行
-执行命令 
-`gulp
-</code></pre><h2 id="3、核心api"><a href="#3、核心api" class="headerlink" title="3、核心api"></a>3、核心api</h2><pre><code>`gulp.task()、gulp.src()、gulp.watch()、gulp.dest()`
-
-(1)gulp.src(globs[, options])
-   用来获取流,文件的路径、文件名、内容等信息 使用pipe()通道导入目的地文件夹
-   例：使用数组的方式来匹配多种文件 gulp.src([&apos;js/*.js&apos;,&apos;css/*.css&apos;,&apos;*.html&apos;])
-
-(2)gulp.dest(path[,options])
-   用来写文件
-   `var gulp = require(&apos;gulp&apos;);
-   gulp.src(&apos;script/jquery.js&apos;).pipe(gulp.dest(&apos;dist/foo.js&apos;));`
-   最终生成的文件路径为 dist/foo.js/jquery.js,而不是dist/foo.js
-   改变文件名，可以使用插件gulp-rename
-
-(3)gulp.task(name,[,deps],fn)
-   用来定义任务，只要执行default任务，就相当于把one,two,three这三个任务执行了 
-   `gulp.task(&apos;default&apos;,[&apos;one&apos;,&apos;two&apos;,&apos;three&apos;])`;
-
- (4)gulp.watch(glob[, opts], tasks)监听文件编号的方法
-   glob 为要监视的文件匹配模式，规则和用法与gulp.src()方法中的glob相同。
-   opts 为一个可选的配置对象，通常不需要用到
-   tasks 为文件变化后要执行的任务，为一个数组
-   例子
-   `gulp.task(&apos;uglify&apos;,function(){ //do something })`
-   `gulp.task(&apos;reload&apos;,function(){ //do something })`                            
-   `gulp.watch(&apos;js/**/*.js&apos;, [&apos;uglify&apos;,&apos;reload&apos;])`;
-   gulp.watch()还有另外一种使用方式
-   `gulp.watch(&apos;js/**/*.js&apos;, function(event){
-       console.log(event.type); //变化类型 added为新增,deleted为删除，changed为改变        console.log(event.path); //变化的文件的路径
-   });`
-</code></pre><h2 id="4、常用的gulp插件"><a href="#4、常用的gulp插件" class="headerlink" title="4、常用的gulp插件"></a>4、常用的gulp插件</h2><pre><code>1、自动加载：gulp-load-plugins
-
-2、重命名：gulp-rename
-
-3、js文件压缩：gulp-uglify
-
-4、css文件压缩：gulp-minify-css
-
-5、html压缩：gulp-minify-html
-
-6、js代码检查：gulp-jshint
-
-7、文件合并：gulp-concat
-
-8、图片压缩：gulp-imagemin
-
-9、自动刷新：gulp-livereload 该插件最好配合谷歌浏览器来使用，且要安装livereload chrome extension扩展插件
-
-10.less,sass编译：gulp-less
-</code></pre>
-          
+ `npm install gulp--
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/18/gulp/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
