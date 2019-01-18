@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。 你可以将 API 想象成一个酒保。你向酒保要一杯酒，他们会给你想要的。简单，但是传">
+<meta name="keywords" content="一个代码的执着者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraphQL入门">
+<meta property="og:url" content="https://zhaoyibo0124.github.io/2019/01/18/js/index.html">
+<meta property="og:site_name" content="赵祎波的博客">
+<meta property="og:description" content="今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。 你可以将 API 想象成一个酒保。你向酒保要一杯酒，他们会给你想要的。简单，但是传">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://image-static.segmentfault.com/101/495/1014955909-5c368e6aad795">
+<meta property="og:image" content="https://segmentfault.com/img/bVbm34s?w=1301&h=944">
+<meta property="og:image" content="https://segmentfault.com/img/bVbm35o?w=1236&h=552">
+<meta property="og:image" content="https://segmentfault.com/img/bVbm37L?w=1204&h=486">
+<meta property="og:image" content="https://segmentfault.com/img/bVbm4ch?w=1303&h=420">
+<meta property="og:updated_time" content="2019-01-18T10:17:00.855Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GraphQL入门">
+<meta name="twitter:description" content="今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。 你可以将 API 想象成一个酒保。你向酒保要一杯酒，他们会给你想要的。简单，但是传">
+<meta name="twitter:image" content="https://image-static.segmentfault.com/101/495/1014955909-5c368e6aad795">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhaoyibo0124.github.io/2019/01/18/js/">
+
+
+
+
+
+  <title>GraphQL入门 | 赵祎波的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">赵祎波的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-目录">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            目录
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaoyibo0124.github.io/2019/01/18/js/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵祎波">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵祎波的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GraphQL入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T15:47:08+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/GraphQL/" itemprop="url" rel="index">
+                    <span itemprop="name">GraphQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://image-static.segmentfault.com/101/495/1014955909-5c368e6aad795" alt="blockchain"></p>
+<p>今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。</p>
+<p>你可以将 API 想象成一个酒保。你向酒保要一杯酒，他们会给你想要的。简单，但是传统的 REST API 有什么问题的呢？</p>
+<p>自从现代 Web 出现以来，构建 Api 并不像听起来那么困难，但是学习和理解 Api 才是比较难。开发人员是大多数据使用你的 API 来构建某些内容或仅使用数据。所以你的 API 应该尽可能的简洁和直观， 好的 API 是非常容易使用和学习的。直观，在开始设计 API 时常要记住的一点。</p>
+<p>我们已经使用 REST 构建 Api 很长时间了。随之而来的也有一些问题，在使用 REST 设计构建 API 时，你会遇到以下问题:</p>
+<p>涉及很多端于开发人员来说，学习和理解你的 API 要困难得多 信息的获取有多有少</p>
+<p>为了解决这些问题，Facebook 创建了 GraphQL。现在，作者认为 GraphQL 是构建 Api 的最佳方式。这篇文章将告诉你为什么要学习了解一下 GraphQL。</p>
+<h2 id="什么是-GraphQL"><a href="#什么是-GraphQL" class="headerlink" title="什么是 GraphQL"></a>什么是 GraphQL</h2><p>GraphQL 是 Facebook 开发的一种开源查询语言。它为我们提供了一种更有效的设计、创建和使用 Api的方法。从根本上说，它是 REST 的替代品。</p>
+<p>GraphQL有很多特性，比如:</p>
+<p>GraphQL查询总是能准确获得你想要的数据，不多不少，所以返回的结果是可预测的， 不再像你使用 REST 那样过度获取信息。</p>
+<p>它为我们提供了同一个端，对于同一个 API，没有版本2或版本3。给 GraphQL API 添加字段和类型而无需影响现有查询，老旧字段可以废弃，从工具中隐藏。</p>
+<p>GraphQL是强类型的，通过它，可以在执行之前验证 GraphQL 类型系统中的查询， 它帮助我们构建更强大的 Api</p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p><code>mkdir graphql-server
+npm init -y</code></p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p><code>npm install --save-dev graphpack</code></p>
+<h3 id="配置运行脚本-package-json"><a href="#配置运行脚本-package-json" class="headerlink" title="配置运行脚本 package.json"></a>配置运行脚本 package.json</h3><p>“scripts”: {<br>    “dev”: “graphpack”,<br>    “build”: “graphpack build”<br>}</p>
+<h3 id="根目录下创建src-并创建schema-graphql-文件"><a href="#根目录下创建src-并创建schema-graphql-文件" class="headerlink" title="根目录下创建src 并创建schema.graphql 文件"></a>根目录下创建src 并创建schema.graphql 文件</h3><p><code>type Query {
+  hello: String
+}</code><br>type 是graphql的语法 后面我们介绍<br>在 schema.graphql 文件将是我们的整个 GraphQL的模式(Schema)</p>
+<h2 id="创建db-js-我们用来模拟数据库"><a href="#创建db-js-我们用来模拟数据库" class="headerlink" title="创建db.js 我们用来模拟数据库"></a>创建db.js 我们用来模拟数据库</h2><p><code>export let users = [
+  { id: 1, name: &quot;John Doe&quot;, email: &quot;john@gmail.com&quot;, age: 22 },
+  { id: 2, name: &quot;Jane Doe&quot;, email: &quot;jane@gmail.com&quot;, age: 23 }
+];</code></p>
+<h3 id="src下创建resolvers-js"><a href="#src下创建resolvers-js" class="headerlink" title="src下创建resolvers.js"></a>src下创建resolvers.js</h3><p><code>import { users } from &quot;./db&quot;;
+const resolvers = {
+  Query: {
+    hello: () =&gt; &quot;Hello World!&quot;
+  }
+};
+export default resolvers;</code><br>resolvers.js 文件是我们提供 GraphQL 操作转换为数据的指令的方式</p>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p><code>npm run dev</code><br><strong>打开<a href="http://localhost:4000会看到以下页面" target="_blank" rel="noopener">http://localhost:4000会看到以下页面</a></strong><br><img src="https://segmentfault.com/img/bVbm34s?w=1301&amp;h=944" alt="blockchain"></p>
+<h3 id="类型（Type）"><a href="#类型（Type）" class="headerlink" title="类型（Type）"></a>类型（Type）</h3><p>类型是 GraphQL 最重要的特性之一。类型是表示 API 外观的自定义对象</p>
+<p>例如，我们要创建一个 User 类型，我们应该有一些 name，email 和 age 字段。 类型字段可以是任何类型，并始终返回一种数据类型，如 Int，Float，String，Boolean，ID，对象类型列表或自定义对象类型</p>
+<p>现在编写第一个type<br><code>type User {
+  id: ID!
+  name: String!
+  email: String!
+  age: Int
+}</code><br>字段结尾的 ！呢？ 感叹号表示字段不可为空</p>
+<h3 id="在GraphQL中，有三个主要概念"><a href="#在GraphQL中，有三个主要概念" class="headerlink" title="在GraphQL中，有三个主要概念:"></a>在GraphQL中，有三个主要概念:</h3><p><strong>query (查询) — 从服务器获取数据的方式</strong><br><strong>mutation (更改) — 修改服务器上的数据并获取更新数据的方法(创建、更新、删除)**</strong><br><strong>**subscription (订阅) — 当希望数据更改时，可以进行消息推送，使用 subscription 类型（针对当前的日趋流行的 real-time 应用提出的）</strong></p>
+<h3 id="query-查询"><a href="#query-查询" class="headerlink" title="query (查询)"></a>query (查询)</h3><p><code>type Query {
+  users: [User!]!
+}</code><br>用户查询将返回给我们一个或多个用户的数组。 它不会返回 null，因为我们放入了 ! ，这意味着它是一个不可为空的查询, 它总会返回一些数据<br>也可以查询固定id用户<br><code>user(id: ID!): User!</code></p>
+<p>现在你的代码是这样的<br><code>type Query {
+  users: [User!]!
+  user(id: ID!): User!
+}</code></p>
+<h3 id="你可能想知道-GraphQL-如何知道从哪里获取数据-这就是为什么我们应该有一个-resolvers-js-文件"><a href="#你可能想知道-GraphQL-如何知道从哪里获取数据-这就是为什么我们应该有一个-resolvers-js-文件" class="headerlink" title="你可能想知道: GraphQL 如何知道从哪里获取数据? 这就是为什么我们应该有一个 resolvers.js 文件"></a>你可能想知道: GraphQL 如何知道从哪里获取数据? 这就是为什么我们应该有一个 resolvers.js 文件</h3><p>resolvers.js 文件内容如下</p>
+<p>`import { users } from “./db”;</p>
+<p>const resolvers = {<br>  Query: {<br>    hello: () =&gt; “Hello World!”<br>  }<br>};</p>
+<p>export default resolvers;`</p>
+<h3 id="现在我们新建一个query查询"><a href="#现在我们新建一个query查询" class="headerlink" title="现在我们新建一个query查询"></a>现在我们新建一个query查询</h3><p>`import { users } from “./db”;</p>
+<p>const resolvers = {<br>  Query: {<br>    user: (parent, { id }, context, info) =&gt; {<br>      return users.find(user =&gt; user.id == id);<br>    },<br>    users: (parent, args, context, info) =&gt; {<br>      return users;<br>    }<br>  }<br>};<br>export default resolvers;`</p>
+<p>现在，解释它是如何工作的：</p>
+<p>每个查询解析器都有四个参数。 在 user 函数中，我们将 id 作为参数传递，然后返回与传递的 id 匹配的特定 user，这很简单。</p>
+<p>在 users 函数中，我们只是返回已存在的 users 数组，这个数组存放的是所有的用户</p>
+<p>现在，我们将测试查询是否工作正常，转到 localhost:4000，输入以下代码</p>
+<p><code>query {
+  users {
+    id
+    name
+    email
+    age
+  }
+}</code></p>
+<p>如下图  你就成功啦<br><img src="https://segmentfault.com/img/bVbm35o?w=1236&amp;h=552" alt="blockchain"></p>
+<p><strong>如果想返回特定的用户</strong><br><code>query {
+  user(id: 1) {
+    id
+    name
+    email
+    age
+  }
+}</code><br>如又下图  你就又成功啦<br><img src="https://segmentfault.com/img/bVbm37L?w=1204&amp;h=486" alt="blockchain"></p>
+<h3 id="mutation-更改"><a href="#mutation-更改" class="headerlink" title="mutation (更改)"></a>mutation (更改)</h3><p>在 schema.graphql文件中编写一个名为mutation 的新类型</p>
+<p><code>type Mutation {
+  createUser(id: ID!, name: String!, email: String!, age: Int): User!
+  updateUser(id: ID!, name: String, email: String, age: Int): User!
+  deleteUser(id: ID!): User!
+}</code></p>
+<p>这里主要定义三个修改数据的方法：<br>createUser：传入需要创建用户的 ID，name，email 和 age，它会返回一个新用户给我们<br>updateUser：传入需要修改用户的 ID，name，email 和 age(非必传)，它会返回一个新用户给我们<br>deleteUser: 传入需要删除用户的 ID，它会返回一个新用户给我们</p>
+<p>现在我们要更改一下resolvers.js  文件内容如下<br>`import { users } from “./db”;<br>const resolvers = {<br>  Query: {<br>    user: (parent, { id }, context, info) =&gt; {<br>      return users.find(user =&gt; user.id == id);<br>    },<br>    users: (parent, args, context, info) =&gt; {<br>      return users;<br>    }<br>  },<br>  Mutation: {<br>    createUser: (parent, { id, name, email, age }, context, info) =&gt; {<br>      const newUser = { id, name, email, age };</p>
+<pre><code>  users.push(newUser);
+
+  return newUser;
+},
+updateUser: (parent, { id, name, email, age }, context, info) =&gt; {
+  let newUser = users.find(user =&gt; user.id === id);
+
+  newUser.name = name;
+  newUser.email = email;
+  newUser.age = age;
+
+  return newUser;
+},
+deleteUser: (parent, { id }, context, info) =&gt; {
+  const userIndex = users.findIndex(user =&gt; user.id === id);
+
+  if (userIndex === -1) throw new Error(&quot;User not found.&quot;);
+
+  const deletedUsers = users.splice(userIndex, 1);
+
+  return deletedUsers[0];
+}
+</code></pre><p>  }<br>};<br>export default resolvers;`</p>
+<p><strong>测试我们的 mutations 是否正常</strong><br>在界面输入<br><code>mutation {
+  createUser(id: 3, name: &quot;Robert&quot;, email: &quot;robert@gmail.com&quot;, age: 21) {
+    id
+    name
+    email
+    age
+  }
+}</code></p>
+<p><img src="https://segmentfault.com/img/bVbm4ch?w=1303&amp;h=420" alt="blockchain"></p>
+<h3 id="subscription-订阅"><a href="#subscription-订阅" class="headerlink" title="subscription (订阅)"></a>subscription (订阅)</h3><p><code>subscription {
+  users {
+    id
+    name
+    email
+    age
+  }
+}</code><br>是不是感觉和query查询一样呢？是的， 但它的工作方式不同。</p>
+<p>当服务器中发生更新时，服务器将运行订阅中指定的 GraphQL 查询，并向客户机发送一个新更新的结果<br>在这篇文章中，我们不打算讨论订阅，如果你感兴趣，请移步<a href="https://graphql.org/" target="_blank" rel="noopener">这里</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如你所见，GraphQL 是一项非常强大的新技术。 它为我们提供了构建更好和精心设计的API的真正能力。 这就是为什么作者建议你现在开始学习它，从本文本作者的角度来说，它最终将取代 REST</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/18/index/" rel="next" title="赵祎波的博客">
+                <i class="fa fa-chevron-left"></i> 赵祎波的博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/18/ss/" rel="prev" title="测试">
+                测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">赵祎波</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-GraphQL"><span class="nav-number">1.</span> <span class="nav-text">什么是 GraphQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始"><span class="nav-number">1.1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖"><span class="nav-number">1.2.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置运行脚本-package-json"><span class="nav-number">1.3.</span> <span class="nav-text">配置运行脚本 package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根目录下创建src-并创建schema-graphql-文件"><span class="nav-number">1.4.</span> <span class="nav-text">根目录下创建src 并创建schema.graphql 文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建db-js-我们用来模拟数据库"><span class="nav-number">2.</span> <span class="nav-text">创建db.js 我们用来模拟数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#src下创建resolvers-js"><span class="nav-number">2.1.</span> <span class="nav-text">src下创建resolvers.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动服务"><span class="nav-number">2.2.</span> <span class="nav-text">启动服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型（Type）"><span class="nav-number">2.3.</span> <span class="nav-text">类型（Type）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在GraphQL中，有三个主要概念"><span class="nav-number">2.4.</span> <span class="nav-text">在GraphQL中，有三个主要概念:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#query-查询"><span class="nav-number">2.5.</span> <span class="nav-text">query (查询)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你可能想知道-GraphQL-如何知道从哪里获取数据-这就是为什么我们应该有一个-resolvers-js-文件"><span class="nav-number">2.6.</span> <span class="nav-text">你可能想知道: GraphQL 如何知道从哪里获取数据? 这就是为什么我们应该有一个 resolvers.js 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在我们新建一个query查询"><span class="nav-number">2.7.</span> <span class="nav-text">现在我们新建一个query查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mutation-更改"><span class="nav-number">2.8.</span> <span class="nav-text">mutation (更改)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subscription-订阅"><span class="nav-number">2.9.</span> <span class="nav-text">subscription (订阅)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.10.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">赵祎波</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
