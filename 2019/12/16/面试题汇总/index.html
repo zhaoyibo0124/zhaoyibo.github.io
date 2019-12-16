@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="2019前端面试题汇总–一、html部分    1、meta的作用：提供文档字符集、使用语言、作者等基本信息，以及对关键词和网页等级的设定等，可以设置页面缓存和移动端的设置和不使用js刷新页面：http-equiv=&amp;quot;refresh&amp;quot; , content=&amp;quot;time&amp;quot;   2、行内元素：`img a input span`   块级元素 `div ul li">
-<meta name="keywords" content="一个代码的执着者">
+<meta name="keywords" content="赵祎波的博客,一个代码的执着者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试题汇总">
 <meta property="og:url" content="https://zhaoyibo0124.github.io/2019/12/16/面试题汇总/index.html">
@@ -150,8 +150,14 @@
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+  <div class="site-meta custom-logo">
+
+      <div class="site-meta-headline">
+        <a>
+          <img class="custom-logo-image" style="width:20px;height:20px" src="/images/avatar.png" alt="赵祎波的博客">
+        </a>
+      </div>
+
 
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
@@ -161,7 +167,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">赵祎波的博客</p>
       
   </div>
 
@@ -431,23 +437,18 @@
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>感谢您的支持</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='inline-block';} else {qr.style.display='none'}">
+    <span>打赏</span>
   </button>
   <div id="QR" style="display: none;">
 
     
       <div id="wechat" style="display: inline-block">
         <img id="wechat_qr" src="/images/wechatpay.jpg" alt="赵祎波 WeChat Pay">
-        <p>WeChat Pay</p>
+        
       </div>
     
 
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="赵祎波 Alipay">
-        <p>Alipay</p>
-      </div>
     
 
     
@@ -546,7 +547,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">赵祎波</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">赵祎波的博客</p>
           </div>
 
           <nav class="site-state motion-element">

@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务：搭建web服务器文件保存时自动重载浏览器使用预处理器如Sass、LESS优化资源，比如压缩CSS、JavaScript、压缩图片 1、安装`npm install gulp -g`   安装依赖  `npm install gulp--save-dev` 2、使用创建gulpfile.js文件  `var gulp=require(&amp;">
-<meta name="keywords" content="一个代码的执着者">
+<meta name="keywords" content="赵祎波的博客,一个代码的执着者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gulp的使用">
 <meta property="og:url" content="https://zhaoyibo0124.github.io/2019/01/18/gulp/index.html">
@@ -150,8 +150,14 @@
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+  <div class="site-meta custom-logo">
+
+      <div class="site-meta-headline">
+        <a>
+          <img class="custom-logo-image" style="width:20px;height:20px" src="/images/avatar.png" alt="赵祎波的博客">
+        </a>
+      </div>
+
 
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
@@ -161,7 +167,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">赵祎波的博客</p>
       
   </div>
 
@@ -398,23 +404,18 @@ gulp.task(&quot;default&quot;,function(){
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>感谢您的支持</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='inline-block';} else {qr.style.display='none'}">
+    <span>打赏</span>
   </button>
   <div id="QR" style="display: none;">
 
     
       <div id="wechat" style="display: inline-block">
         <img id="wechat_qr" src="/images/wechatpay.jpg" alt="赵祎波 WeChat Pay">
-        <p>WeChat Pay</p>
+        
       </div>
     
 
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="赵祎波 Alipay">
-        <p>Alipay</p>
-      </div>
     
 
     
@@ -513,7 +514,7 @@ gulp.task(&quot;default&quot;,function(){
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">赵祎波</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">赵祎波的博客</p>
           </div>
 
           <nav class="site-state motion-element">
