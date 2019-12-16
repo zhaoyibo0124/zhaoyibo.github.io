@@ -9,7 +9,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
 <meta name="theme-color" content="#222">
 
 
@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="赵祎波的博客">
 <meta property="og:description" content="元字符[拥有特殊含义的元字符] \d -&amp;gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&amp;gt;匹配一个除了0-9的任意字符 \w -&amp;gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_] \s -&amp;gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...) \b -&amp;gt; 匹配一个单词的边界********* 开头结尾和空格 \">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-18T08:34:02.085Z">
+<meta property="og:updated_time" content="2019-12-16T09:10:32.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则的使用">
 <meta name="twitter:description" content="元字符[拥有特殊含义的元字符] \d -&amp;gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&amp;gt;匹配一个除了0-9的任意字符 \w -&amp;gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_] \s -&amp;gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...) \b -&amp;gt; 匹配一个单词的边界********* 开头结尾和空格 \">
@@ -345,7 +345,8 @@ x|y -&gt; x或者y的一个
 [a-z] -&gt; 匹配a-z中的任意一个字符
 [^a-z] -&gt; 匹配除了a-z中的任意一个字符
 () -&gt; 正则中的分组
-</code></pre><p><strong>注意:</strong><br>    1)关于[]<br>        a、[+] -&gt;中括号中出现的所有字符都代表的是本身的意思<br>        b、[12-65] -&gt;这个不是12-65而是1/2-6/5三者中的一个</p>
+</code></pre><a id="more"></a>
+<p><strong>注意:</strong><br>    1)关于[]<br>        a、[+] -&gt;中括号中出现的所有字符都代表的是本身的意思<br>        b、[12-65] -&gt;这个不是12-65而是1/2-6/5三者中的一个</p>
 <pre><code>2)关于()
     a、分组的作用是改变默认的优先级,例如:/^18|19$/,181、189、119、819、1819...都符合,
     而不是我们认为的18或19,但是改成/^(18|19)$/就是单纯的18或19了
@@ -464,6 +465,11 @@ e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhuf
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MjMyNS8xODg3Mg=="></div>
+    </div>
+
+  
 
 
 
@@ -577,7 +583,7 @@ e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhuf
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -642,6 +648,8 @@ e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhuf
   
 
 
+  
+
 
 
 
@@ -680,6 +688,11 @@ e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhuf
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -728,6 +741,17 @@ e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhuf
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

@@ -9,7 +9,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
 <meta name="theme-color" content="#222">
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="安装方式：下载安装包安装MongoDB 下载地址:https://www.mongodb.com/download-center#community 下载解压并改名mongodb将其放在 /usr/local/ 目录下使用前往文件夹 输入“ /usr/local/” 进入 配置环境变量使用前往文件夹 输入“ ~/ ” 进入 打开 .bash_profile (隐藏文件)手动设置环境变量 ： exp">
+<meta name="description" content="安装方式：下载安装包安装MongoDB 下载地址:https://www.mongodb.com/download-center#community 下载解压并改名mongodb将其放在 /usr/local/ 目录下使用前往文件夹 输入“ /usr/local/” 进入">
 <meta name="keywords" content="赵祎波的博客,一个代码的执着者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongodb安装">
 <meta property="og:url" content="https://zhaoyibo0124.github.io/2019/01/21/mongdb/index.html">
 <meta property="og:site_name" content="赵祎波的博客">
-<meta property="og:description" content="安装方式：下载安装包安装MongoDB 下载地址:https://www.mongodb.com/download-center#community 下载解压并改名mongodb将其放在 /usr/local/ 目录下使用前往文件夹 输入“ /usr/local/” 进入 配置环境变量使用前往文件夹 输入“ ~/ ” 进入 打开 .bash_profile (隐藏文件)手动设置环境变量 ： exp">
+<meta property="og:description" content="安装方式：下载安装包安装MongoDB 下载地址:https://www.mongodb.com/download-center#community 下载解压并改名mongodb将其放在 /usr/local/ 目录下使用前往文件夹 输入“ /usr/local/” 进入">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-21T03:34:00.716Z">
+<meta property="og:updated_time" content="2019-12-16T09:10:26.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb安装">
-<meta name="twitter:description" content="安装方式：下载安装包安装MongoDB 下载地址:https://www.mongodb.com/download-center#community 下载解压并改名mongodb将其放在 /usr/local/ 目录下使用前往文件夹 输入“ /usr/local/” 进入 配置环境变量使用前往文件夹 输入“ ~/ ” 进入 打开 .bash_profile (隐藏文件)手动设置环境变量 ： exp">
+<meta name="twitter:description" content="安装方式：下载安装包安装MongoDB 下载地址:https://www.mongodb.com/download-center#community 下载解压并改名mongodb将其放在 /usr/local/ 目录下使用前往文件夹 输入“ /usr/local/” 进入">
 
 
 
@@ -329,8 +329,7 @@
 
       
         <h3 id="安装方式：下载安装包安装"><a href="#安装方式：下载安装包安装" class="headerlink" title="安装方式：下载安装包安装"></a>安装方式：下载安装包安装</h3><p>MongoDB 下载地址:<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">https://www.mongodb.com/download-center#community</a></p>
-<p><strong>下载解压并改名mongodb</strong><br>将其放在 /usr/local/ 目录下<br>使用前往文件夹 输入“ /usr/local/” 进入</p>
-<p><strong>配置环境变量</strong><br>使用前往文件夹 输入“ ~/ ” 进入 打开 .bash_profile (隐藏文件)<br>手动设置环境变量 ： export PATH=”/usr/local/mongodb/bin:$PATH” 也可使用vim编辑 保存</p>
+<p><strong>下载解压并改名mongodb</strong><br>将其放在 /usr/local/ 目录下<br>使用前往文件夹 输入“ /usr/local/” 进入<br><a id="more"></a><br><strong>配置环境变量</strong><br>使用前往文件夹 输入“ ~/ ” 进入 打开 .bash_profile (隐藏文件)<br>手动设置环境变量 ： export PATH=”/usr/local/mongodb/bin:$PATH” 也可使用vim编辑 保存</p>
 <p><strong>创建数据库目录</strong><br>要运行mongodb需要一个数据库存储目录/data/db，需要我们手动创建<br>终端使用命令 ： sudo mkdir -p /data/db 创建</p>
 <p><strong>启动服务</strong><br>使用 sudo mongod 启动数据库.<br>启动后: 在浏览器中输入 127.0.0.1:27017<br>显示 It looks like you are trying to access MongoDB over HTTP on the native driver port. 则启动成功</p>
 <p>新打开 终端 使用 sudo mongo 连接数据库<br>同样的 命令窗口末尾出现27017 即为成功连接</p>
@@ -423,6 +422,11 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MjMyNS8xODg3Mg=="></div>
+    </div>
 
   
 
@@ -538,7 +542,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -603,6 +607,8 @@
   
 
 
+  
+
 
 
 
@@ -641,6 +647,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -689,6 +700,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

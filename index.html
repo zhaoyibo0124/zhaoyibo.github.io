@@ -9,7 +9,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
 <meta name="theme-color" content="#222">
 
 
@@ -226,343 +226,991 @@
             
   
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
 <style type="text/css">
-
-.glyphicon-chevron-left{
-    position: absolute;
-    width: 25px;
-    height: 35px;
-    line-height: 36px;
-    text-align: center;
-    opacity: .5;
-    vertical-align: middle;
-    background: rgba(0,0,0);
-    left: 5px;
-    top: 42.5%;
-    color: #fff;
-    font-family: "宋体";
-    font-size: 20px;
-    font-weight: bold;
-    display: inline-block;
-    cursor: pointer;
-    display: none;
-}
-
-.glyphicon-chevron-left:before{
-  content: "<";
-}
-.glyphicon-chevron-right{
-    position: absolute;
-    width: 25px;
-    height: 35px;
-    line-height: 36px;
-    text-align: center;
-    opacity: .5;
-    vertical-align: middle;
-    background: rgba(0,0,0);
-    top: 42.5%;
-    right: 5px;
-    color: #fff;
-    font-family: arial;
-    font-size: 20px;
-    font-weight: bold;
-    display: inline-block;
-    cursor: pointer;
-    font-family: "宋体";
-    display: none;
-}
-.glyphicon-chevron-right:before{
-  content: ">";
-}
-
-/*设置鼠标移入显示左右切换按钮*/
-#myCarousel:hover .glyphicon-chevron-left,
-#myCarousel:hover .glyphicon-chevron-right{
-  display: block;
-}
-
-/*设置手机端不展示轮播图*/
-@media (max-width: 767px){
-  .rights{
-    display: none;
-  }
-  .carousel{
-    display: none;
-  }
-  .slide{
-    width: 100% !important;
-    height: 100% !important;
-  }
-  .tag-cloud{
-    display: none;
-  }
-}
-
-.carousel{
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.carousel-inner {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.carousel-inner > .item {
-  display: none;
-  position: relative;
-  -webkit-transition: 0.6s ease-in-out left;
-  -o-transition: 0.6s ease-in-out left;
-  transition: 0.6s ease-in-out left;
-}
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-  line-height: 1;
-}
-@media all and (transform-3d), (-webkit-transform-3d) {
-  .carousel-inner > .item {
-    -webkit-transition: -webkit-transform 0.6s ease-in-out;
-    -moz-transition: -moz-transform 0.6s ease-in-out;
-    -o-transition: -o-transform 0.6s ease-in-out;
-    transition: transform 0.6s ease-in-out;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000px;
-    -moz-perspective: 1000px;
-    perspective: 1000px;
-  }
-  .carousel-inner > .item.next,
-  .carousel-inner > .item.active.right {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    left: 0;
-  }
-  .carousel-inner > .item.prev,
-  .carousel-inner > .item.active.left {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-    left: 0;
-  }
-  .carousel-inner > .item.next.left,
-  .carousel-inner > .item.prev.right,
-  .carousel-inner > .item.active {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    left: 0;
-  }
-}
-.carousel-inner > .active,
-.carousel-inner > .next,
-.carousel-inner > .prev {
-  display: block;
-}
-.carousel-inner > .active {
-  left: 0;
-}
-.carousel-inner > .next,
-.carousel-inner > .prev {
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.carousel-inner > .next {
-  left: 100%;
-}
-.carousel-inner > .prev {
-  left: -100%;
-}
-.carousel-inner > .next.left,
-.carousel-inner > .prev.right {
-  left: 0;
-}
-.carousel-inner > .active.left {
-  left: -100%;
-}
-.carousel-inner > .active.right {
-  left: 100%;
-}
-.carousel-control {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-  background-color: rgba(0, 0, 0, 0);
-}
-.carousel-control.left {
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
-  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
-}
-.carousel-control.right {
-  left: auto;
-  right: 0px;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
-}
-.carousel-control:hover,
-.carousel-control:focus {
-  outline: 0;
-  color: #fff;
-  text-decoration: none;
-}
-
-
-.carousel-control .icon-prev,
-.carousel-control .glyphicon-chevron-left{
-  left: 9px;
-}
-
-.carousel-control .icon-next,
-.carousel-control .glyphicon-chevron-right {
-  right: 0px;
-}
-.carousel-control .icon-prev,
-.carousel-control .icon-next {
-  width: 20px;
-  height: 20px;
-  line-height: 1;
-  font-family: serif;
-}
-
-.carousel-indicators {
-  opacity: 0.4;
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  z-index: 15;
-  width: 60%;
-  margin-left: -30%;
-  padding-left: 0;
-  list-style: none;
-  text-align: center;
-}
-.carousel-indicators li {
-  display: inline-block;
-  width: 30px;
-  height: 3px;
-  margin: 5px;
-  text-indent: -999px;
-  border: 1px solid #bbb;
-  cursor: pointer;
-  background-color: rgba(0,0,0,.24);
-}
-.carousel-indicators .active {
-  width: 30px;
-  height: 3px;
-  background-color: #fff;
-}
-.carousel-caption {
-  position: absolute;
-  left: 15%;
-  right: 15%;
-  bottom: 20px;
-  z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-}
-.carousel-caption .btn {
-  text-shadow: none;
-}
-@media screen and (min-width: 768px) {
-  .carousel-control .glyphicon-chevron-left,
-  .carousel-control .icon-prev {
-    margin-left: -10px;
-  }
-  .carousel-caption {
-    left: 20%;
-    right: 20%;
-    padding-bottom: 30px;
-  }
-  .carousel-indicators {
-    bottom: -14px;
-  }
-}
+  .swiper-container {
+    min-height: 220px;
+    max-height:320px;
+  } 
 </style>
-<div width="100%" height="320px" style="border: 0px; overflow: hidden; border-radius: 5px;" scrolling="no">
-			
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3500">
-		<!-- 轮播（Carousel）指标 -->
-		<ol class="carousel-indicators">
-		
-		
-
-			<li data-target="#myCarousel" data-slide-to="0"></li>
-			
-
-		
-
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			
-
-		
-
-			<li data-target="#myCarousel" data-slide-to="2"></li>
-			
-
-		
-		</ol>
-		<!-- 轮播（Carousel）项目 -->
-		<div class="carousel-inner" style="height: 320px; border-radius: 5px; width: 100%;">
-
-		
+<script src="https://unpkg.com/swiper/js/swiper.min.js"> </script>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
 		 
+        <div class="swiper-slide">
+          <a class="item active" href="/images/time1.jpeg" target="_blank" style="height: 100%;">
+            <img src="/images/time1.jpeg" style="width: 100%; height: 100%">
+          </a>
+        </div>
 		
-	    	
-				<a class="item active" href="#" target="_blank" style="height: 100%;">
-					<img src="/images/time1.jpeg" style="width: 100%; height: 100%">
-				</a>
-				
-				
-
+        <div class="swiper-slide">
+          <a class="item active" href="/images/time2.jpeg" target="_blank" style="height: 100%;">
+            <img src="/images/time2.jpeg" style="width: 100%; height: 100%">
+          </a>
+        </div>
 		
+        <div class="swiper-slide">
+          <a class="item active" href="/images/time3.jpeg" target="_blank" style="height: 100%;">
+            <img src="/images/time3.jpeg" style="width: 100%; height: 100%">
+          </a>
+        </div>
 		
-	    	
-					<a class="item" href="#" target="_blank" style="height: 100%;">
-						<img src="/images/time2.jpeg" style="width: 100%; height: 100%;">
-					</a>
-			
-
+        <div class="swiper-slide">
+          <a class="item active" href="/images/time4.jpeg" target="_blank" style="height: 100%;">
+            <img src="/images/time4.jpeg" style="width: 100%; height: 100%">
+          </a>
+        </div>
 		
-		
-	    	
-					<a class="item" href="#" target="_blank" style="height: 100%;">
-						<img src="/images/time3.jpeg" style="width: 100%; height: 100%;">
-					</a>
-			
-
-		
-
-	 
-		</div>
-		<!-- 轮播（Carousel）导航 -->
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		    
-		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		   
-		</a>
-	</div> 
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
 </div>
+<script>        
+  var mySwiper = new Swiper ('.swiper-container', {
+    autoplay: true,
+    observer:true,//修改swiper自己或子元素时，自动初始化swiper
+    observeParents:true,//修改swiper的父元素时，自动初始化swiper
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    // 如果需要前进后退按钮
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })        
+  </script>
 
+  <section id="posts" class="posts-expand">
+    
+      
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaoyibo0124.github.io/2019/12/16/面试题汇总/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵祎波">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵祎波的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/16/面试题汇总/" itemprop="url">面试题汇总</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-16T14:35:30+08:00">
+                2019-12-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试题/" itemprop="url" rel="index">
+                    <span itemprop="name">面试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="2019前端面试题汇总–"><a href="#2019前端面试题汇总–" class="headerlink" title="2019前端面试题汇总–"></a>2019前端面试题汇总–</h3><p><strong>一、html部分</strong><br>    1、meta的作用：提供文档字符集、使用语言、作者等基本信息，以及对关键词和网页等级的设定等，可以设置页面缓存和移动端的设置和不使用js刷新页面：<code>http-equiv=&quot;refresh&quot; , content=&quot;time&quot;</code>  </p>
+<pre><code>2、行内元素：`img a input span`   块级元素 `div ul li p table` 
+
+3、css3伪类：`after before  disabled enabled checked`  
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/16/面试题汇总/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaoyibo0124.github.io/2019/01/21/mongdb/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵祎波">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵祎波的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/21/mongdb/" itemprop="url">mongodb安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-21T11:19:56+08:00">
+                2019-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="安装方式：下载安装包安装"><a href="#安装方式：下载安装包安装" class="headerlink" title="安装方式：下载安装包安装"></a>安装方式：下载安装包安装</h3><p>MongoDB 下载地址:<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">https://www.mongodb.com/download-center#community</a></p>
+<p><strong>下载解压并改名mongodb</strong><br>将其放在 /usr/local/ 目录下<br>使用前往文件夹 输入“ /usr/local/” 进入<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/21/mongdb/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaoyibo0124.github.io/2019/01/18/regular/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵祎波">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵祎波的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/18/regular/" itemprop="url">正则的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T16:16:07+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVASCRIPT/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVASCRIPT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><pre><code>[拥有特殊含义的元字符]
+\d -&gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&gt;匹配一个除了0-9的任意字符
+\w -&gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_]
+\s -&gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...)
+\b -&gt; 匹配一个单词的边界********* 开头结尾和空格
+\t -&gt; 匹配一个制表符
+\n -&gt; 匹配一个换行符控制台换行。页面中不能换行。
+. -&gt; 匹配一个除了\n以外的任意字符
+^ -&gt; 以某一个元字符开头
+$ -&gt; 以某一个元字符结尾
+\ -&gt; 转义字符
+x|y -&gt; x或者y的一个
+[xyz] -&gt; x、y、z中的任意一个
+[^xyz] -&gt; 除了xyz中的任意一个字符
+[a-z] -&gt; 匹配a-z中的任意一个字符
+[^a-z] -&gt; 匹配除了a-z中的任意一个字符
+() -&gt; 正则中的分组
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/18/regular/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaoyibo0124.github.io/2019/01/18/graphql/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵祎波">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵祎波的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/18/graphql/" itemprop="url">GraphQL入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T15:47:08+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/GraphQL/" itemprop="url" rel="index">
+                    <span itemprop="name">GraphQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="https://image-static.segmentfault.com/101/495/1014955909-5c368e6aad795" alt="blockchain"></p>
+<p>今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。</p>
+<p>你可以将 API 想象成一个酒保。你向酒保要一杯酒，他们会给你想要的。简单，但是传统的 REST API 有什么问题的呢？<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/18/graphql/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaoyibo0124.github.io/2019/01/18/index/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵祎波">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵祎波的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/18/index/" itemprop="url">赵祎波的博客</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T14:08:08+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" rel="gallery_ck482b2f700064ws6f1fxe1xz" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" itemprop="contentUrl">
+              </a>
+            
+          
+            
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" rel="gallery_ck482b2f700064ws6f1fxe1xz" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" itemprop="contentUrl">
+              </a>
+            
+          
+            
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_ck482b2f700064ws6f1fxe1xz" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" itemprop="contentUrl">
+              </a>
+            </div>
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" rel="gallery_ck482b2f700064ws6f1fxe1xz" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" itemprop="contentUrl">
+              </a>
+            
+          
+            
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_ck482b2f700064ws6f1fxe1xz" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" itemprop="contentUrl">
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        
+          世界万千，滚滚洪流，只做代码的执着者
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/18/index/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaoyibo0124.github.io/2019/01/18/gulp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵祎波">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵祎波的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/18/gulp/" itemprop="url">gulp的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T11:17:15+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端自动化工具/" itemprop="url" rel="index">
+                    <span itemprop="name">前端自动化工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h5 id="gulp-是一个自动化工具，前端开发者可以使用它来处理常见任务："><a href="#gulp-是一个自动化工具，前端开发者可以使用它来处理常见任务：" class="headerlink" title="gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务："></a>gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务：</h5><p>搭建web服务器<br>文件保存时自动重载浏览器<br>使用预处理器如Sass、LESS<br>优化资源，比如压缩CSS、JavaScript、压缩图片</p>
+<h2 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h2><pre><code>`npm install gulp -g`
+
+ 安装依赖
+ `npm install gulp--save-dev`
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/18/gulp/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
   
 
 
@@ -657,7 +1305,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -722,6 +1370,8 @@
   
 
 
+  
+
 
 
 
@@ -760,6 +1410,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
