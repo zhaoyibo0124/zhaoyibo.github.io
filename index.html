@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,7 +94,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -102,7 +102,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '左眼大梦一场'
     },
     algolia: {
       applicationID: '',
@@ -178,32 +178,22 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-首页">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-标签">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-目录">
+        <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            目录
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
           </a>
         </li>
       
@@ -225,6 +215,343 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+.glyphicon-chevron-left{
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    line-height: 36px;
+    text-align: center;
+    opacity: .5;
+    vertical-align: middle;
+    background: rgba(0,0,0);
+    left: 5px;
+    top: 45%;
+    color: #fff;
+    font-family: "宋体";
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    display: none;
+}
+
+.glyphicon-chevron-left:before{
+  content: "<";
+}
+.glyphicon-chevron-right{
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    line-height: 36px;
+    text-align: center;
+    opacity: .5;
+    vertical-align: middle;
+    background: rgba(0,0,0);
+    top: 45%;
+    right: 5px;
+    color: #fff;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    font-family: "宋体";
+    display: none;
+}
+.glyphicon-chevron-right:before{
+  content: ">";
+}
+
+/*设置鼠标移入显示左右切换按钮*/
+#myCarousel:hover .glyphicon-chevron-left,
+#myCarousel:hover .glyphicon-chevron-right{
+  display: block;
+}
+
+/*设置手机端不展示轮播图*/
+@media (max-width: 767px){
+  .rights{
+    display: none;
+  }
+  .carousel{
+    display: none;
+  }
+  .slide{
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .tag-cloud{
+    display: none;
+  }
+}
+
+.carousel{
+  width: 65%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-inner > .item {
+  display: none;
+  position: relative;
+  -webkit-transition: 0.6s ease-in-out left;
+  -o-transition: 0.6s ease-in-out left;
+  transition: 0.6s ease-in-out left;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  line-height: 1;
+}
+@media all and (transform-3d), (-webkit-transform-3d) {
+  .carousel-inner > .item {
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
+    -moz-transition: -moz-transform 0.6s ease-in-out;
+    -o-transition: -o-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+  }
+  .carousel-inner > .item.next,
+  .carousel-inner > .item.active.right {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    left: 0;
+  }
+  .carousel-inner > .item.prev,
+  .carousel-inner > .item.active.left {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    left: 0;
+  }
+  .carousel-inner > .item.next.left,
+  .carousel-inner > .item.prev.right,
+  .carousel-inner > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    left: 0;
+  }
+}
+.carousel-inner > .active,
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  display: block;
+}
+.carousel-inner > .active {
+  left: 0;
+}
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.carousel-inner > .next {
+  left: 100%;
+}
+.carousel-inner > .prev {
+  left: -100%;
+}
+.carousel-inner > .next.left,
+.carousel-inner > .prev.right {
+  left: 0;
+}
+.carousel-inner > .active.left {
+  left: -100%;
+}
+.carousel-inner > .active.right {
+  left: 100%;
+}
+.carousel-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0);
+}
+.carousel-control.left {
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+.carousel-control.right {
+  left: auto;
+  right: 0px;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+}
+.carousel-control:hover,
+.carousel-control:focus {
+  outline: 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.carousel-control .icon-prev,
+.carousel-control .glyphicon-chevron-left{
+  left: 9px;
+}
+
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-right {
+  right: 0px;
+}
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  font-family: serif;
+}
+
+.carousel-indicators {
+  opacity: 0.4;
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  z-index: 15;
+  width: 60%;
+  margin-left: -30%;
+  padding-left: 0;
+  list-style: none;
+  text-align: center;
+}
+.carousel-indicators li {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  margin: 5px;
+  text-indent: -999px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  background-color: rgba(0,0,0,.24);
+}
+.carousel-indicators .active {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+}
+.carousel-caption {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 20px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.carousel-caption .btn {
+  text-shadow: none;
+}
+@media screen and (min-width: 768px) {
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .icon-prev {
+    margin-left: -10px;
+  }
+  .carousel-caption {
+    left: 20%;
+    right: 20%;
+    padding-bottom: 30px;
+  }
+  .carousel-indicators {
+    bottom: -14px;
+  }
+}
+</style>
+<div width="100%" height="320px" style="border: 0px; overflow: hidden; border-radius: 10px;" scrolling="no">
+			
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3500">
+		<!-- 轮播（Carousel）指标 -->
+		<ol class="carousel-indicators">
+		
+		
+
+			<li data-target="#myCarousel" data-slide-to="0"></li>
+			
+
+		
+
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			
+
+		
+
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			
+
+		
+		</ol>
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner" style="height: 280px; border-radius: 10px; width: 100%;">
+
+		
+		 
+		
+	    	
+				<a class="item active" href="#" target="_blank" style="height: 100%;">
+					<img src="../../public/images/time1.jpeg" style="width: 100%; height: 100%">
+				</a>
+				
+				
+
+		
+		
+	    	
+					<a class="item" href="#" target="_blank" style="height: 100%;">
+						<img src="../../public/images/time2.jpeg" style="width: 100%; height: 100%;">
+					</a>
+			
+
+		
+		
+	    	
+					<a class="item" href="#" target="_blank" style="height: 100%;">
+						<img src="../../public/images/time3.jpeg" style="width: 100%; height: 100%;">
+					</a>
+			
+
+		
+
+	 
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		    
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		   
+		</a>
+	</div> 
+</div>
+
+
   <section id="posts" class="posts-expand">
     
       
@@ -333,15 +660,104 @@
       
         
           
-          2019前端面试题汇总–一、html部分    1、meta的作用：提供文档字符集、使用语言、作者等基本信息，以及对关键词和网页等级的设定等，可以设置页面缓存和移动端的设置和不使用js刷新页面：http-equiv=&quot;refresh&quot; , content=&quot;time&q
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/16/面试题汇总/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="2019前端面试题汇总–"><a href="#2019前端面试题汇总–" class="headerlink" title="2019前端面试题汇总–"></a>2019前端面试题汇总–</h3><p><strong>一、html部分</strong><br>    1、meta的作用：提供文档字符集、使用语言、作者等基本信息，以及对关键词和网页等级的设定等，可以设置页面缓存和移动端的设置和不使用js刷新页面：<code>http-equiv=&quot;refresh&quot; , content=&quot;time&quot;</code>  </p>
+<pre><code>2、行内元素：`img a input span`   块级元素 `div ul li p table` 
+
+3、css3伪类：`after before  disabled enabled checked`  
+</code></pre><p><strong>二、css部分</strong><br>     1、垂直水平居中：<br>            <code>display:flex;
+            just-content:center;
+            align-items:center; 
+            position:absolute;
+            top:50%;
+            left:50%; 
+            transform:translate(-50%, -50%);</code><br>     2、清除浮动：使用伪类<br>        <code>content:&#39;&#39;;display:block; height:0;clear:both: visibility:hidden</code></p>
+<pre><code>3、visibility和display的区别：visibility会占用空间
+
+4、html5和css3 新增的：语义化标签  `header footer article section nav audio video  transform和animation`开启硬件加速 GPU会耗电
+
+5、超出显示省略号：`over-flow：hidden  text-overflow:ellipsis white-space:nowrap`
+
+6、盒子模型：`conten-box(content+padding+border)和border-box`
+</code></pre><p><strong>三、缓存系列</strong><br>        1、localStorage和sessionStorage区别：本地存储和会话级别;</p>
+<pre><code>2、cookie和session的区别: http可设置cookie;
+
+3、浏览器强缓存：cache-control  max-age     协商缓存last-modified if-modified-since   etag if-none-match;
+</code></pre><p><strong>四、页面加载优化</strong><br>        1、压缩js和css 雪碧图 图片懒加载和分段加载  webworker后台加载数据  长轮询改为webscoket</p>
+<p><strong>五、js原生</strong><br>     1、栈内存和堆内存：栈内存在当前执行环境结束时会销毁，存放基本数据类型和引用数据类型的对象指针 指向堆内存的地址，堆内存引用他的指针不存在时才会销毁  置为null的原因</p>
+<pre><code>2、闭包：指有权访问另一个函数作用域中的变量的函数
+
+3、什么情况会导致内存泄露：闭包，定时器循环  es6的WeakMap和WeakSet可以避免内存泄露  只要外部的引用消失，WeakMap 内部的引用，就会自动被垃圾回收清除
+
+4、改变this指向的方法：bind call apply的区别   参数传参的区别  和立即执行改变this指向的
+
+5、js继承的方法：
+
+   `function Person (name, age) {
+       this.name = name,
+           this.age = age
+   }
+   Person.prototype.setAge = function () {
+       console.log(&quot;111&quot;)
+   }
+   function Student (name, age, price) {
+       Person.call(this, name, age)
+       this.price = price
+       this.setScore = function () { }
+   }
+   Student.prototype = Object.create(Person.prototype)//核心代码
+   Student.prototype.constructor = Student//核心代码`
+</code></pre><p><strong>六、es6</strong><br>        1、es6的继承为什么可以使用this？使用 super后才能使用this</p>
+<pre><code>2、let const var的区别
+
+3、快速创建0-100的数组  `Array.from(Array(100)).map((v,k)=&gt;k)`
+
+4、箭头函数和普通函数的区别  this的指向  不可以new
+
+5、promise的理解  是一个构造函数也是一个对象，保存着未来状态的执行结果   pendding，reject fulfilled
+
+6、async await  一个接口依赖多个接口可以使用这个方法
+
+7、generator：函数带星号  yeild  通过next()执行下一个
+
+8、数组去重：用 `[...new Set([1,2,3,1,2])]`
+</code></pre><p><strong>七、面向对象三个特点 封装 继承 多态</strong></p>
+<p><strong>八、js new一个对象发生了什么</strong><br>    1创建一个空对象 var obj = {}<br>    2设置新对象的constructor属性为构造函数,设置新对象的<strong>proto</strong>属性指向构造函数的prototype                                obj.<strong>proto</strong>=classA.prototype<br>        使用新对象函数 this指向实例对象 classA.call(obj)<br>    4、返回此对象的引用地址<br><strong>九、event-loop事件循环</strong><br>    JavaScript的事件分两种，宏任务(macro-task)和微任务(micro-task)<br>    宏任务：包括整体代码script，setTimeout，setInterval<br>    微任务：Promise.then(非new Promise)，process.nextTick(node中)</p>
+<p>　　1）所有同步任务都在主线程上执行，形成一个执行栈<br>　　2）当主线程中的执行栈为空时，检查事件队列是否为空，如果为空，则继续检查；如不为空，则执行3<br>　　3）取出任务队列的首部，加入执行栈<br>　　4）执行任务<br>　　5）检查执行栈，如果执行栈为空，则跳回第 2 步；如不为空，则继续检查</p>
+<p><strong>十、数组循环方法的区别：</strong><br>    1、foreach 不能return map返回新数组 可以return</p>
+<p><strong>十一、react相关</strong></p>
+<pre><code>1、生命周期
+
+2、组件传值
+
+3、redux
+
+4、ref
+
+5、react-router 传参 &lt;link to={{}&gt;
+</code></pre><p><strong>十二、vue</strong></p>
+<pre><code>1、生命周期 created ajax请求  mounted
+
+2、组件传值 props emit 绑定方法  emit通知
+
+3、vuex 
+
+4、vue-router传值  
+
+5、设置属性 $set 
+
+6、其他 $watch $filter  
+</code></pre><p><strong>十三、webpack</strong></p>
+<pre><code>1、entry
+
+2、output
+
+3、rules
+
+4、mode
+
+5、plugin
+</code></pre>
+          
         
       
     </div>
@@ -481,17 +897,15 @@
       
         
           
-          安装方式：下载安装包安装MongoDB 下载地址:https://www.mongodb.com/download-center#community
-下载解压并改名mongodb将其放在 /usr/local/ 目录下使用前往文件夹 输入“ /usr/local/” 进入
-配置环境变量使用前往文件夹
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/21/mongdb/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="安装方式：下载安装包安装"><a href="#安装方式：下载安装包安装" class="headerlink" title="安装方式：下载安装包安装"></a>安装方式：下载安装包安装</h3><p>MongoDB 下载地址:<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">https://www.mongodb.com/download-center#community</a></p>
+<p><strong>下载解压并改名mongodb</strong><br>将其放在 /usr/local/ 目录下<br>使用前往文件夹 输入“ /usr/local/” 进入</p>
+<p><strong>配置环境变量</strong><br>使用前往文件夹 输入“ ~/ ” 进入 打开 .bash_profile (隐藏文件)<br>手动设置环境变量 ： export PATH=”/usr/local/mongodb/bin:$PATH” 也可使用vim编辑 保存</p>
+<p><strong>创建数据库目录</strong><br>要运行mongodb需要一个数据库存储目录/data/db，需要我们手动创建<br>终端使用命令 ： sudo mkdir -p /data/db 创建</p>
+<p><strong>启动服务</strong><br>使用 sudo mongod 启动数据库.<br>启动后: 在浏览器中输入 127.0.0.1:27017<br>显示 It looks like you are trying to access MongoDB over HTTP on the native driver port. 则启动成功</p>
+<p>新打开 终端 使用 sudo mongo 连接数据库<br>同样的 命令窗口末尾出现27017 即为成功连接</p>
+<p><strong>可视化工具</strong><br>我用的可视化工具是robo 3T</p>
+
+          
         
       
     </div>
@@ -631,18 +1045,54 @@
       
         
           
-          元字符[拥有特殊含义的元字符]
+            <h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><pre><code>[拥有特殊含义的元字符]
 \d -&gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&gt;匹配一个除了0-9的任意字符
 \w -&gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_]
-\s -&gt; 匹配一个空白字符(空格、制表符(ta
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/18/regular/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+\s -&gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...)
+\b -&gt; 匹配一个单词的边界********* 开头结尾和空格
+\t -&gt; 匹配一个制表符
+\n -&gt; 匹配一个换行符控制台换行。页面中不能换行。
+. -&gt; 匹配一个除了\n以外的任意字符
+^ -&gt; 以某一个元字符开头
+$ -&gt; 以某一个元字符结尾
+\ -&gt; 转义字符
+x|y -&gt; x或者y的一个
+[xyz] -&gt; x、y、z中的任意一个
+[^xyz] -&gt; 除了xyz中的任意一个字符
+[a-z] -&gt; 匹配a-z中的任意一个字符
+[^a-z] -&gt; 匹配除了a-z中的任意一个字符
+() -&gt; 正则中的分组
+</code></pre><p><strong>注意:</strong><br>    1)关于[]<br>        a、[+] -&gt;中括号中出现的所有字符都代表的是本身的意思<br>        b、[12-65] -&gt;这个不是12-65而是1/2-6/5三者中的一个</p>
+<pre><code>2)关于()
+    a、分组的作用是改变默认的优先级,例如:/^18|19$/,181、189、119、819、1819...都符合,
+    而不是我们认为的18或19,但是改成/^(18|19)$/就是单纯的18或19了
+
+    b、可以在捕获大正则匹配的内容同时,把分组匹配的内容也进行捕获-&gt;分组捕获
+
+    c、分组引用,例如:/^(\d)(\w)\2\1$/,这里的\2是和第二个分组出现一模样的内容,
+    \1是和第一个分组出现一模一样的内容,例如:&quot;0aa0&quot;就符合了
+</code></pre><p>  [代表数量的量词元字符]<br>  * -&gt; 0到多个<br>  + -&gt; 1到多个<br>  ? -&gt; 0到1个<br>  {n} -&gt; 出现n次<br>  {n,} -&gt; 出现n到多次<br>  {n,m} -&gt; 出现n到m次</p>
+<p>  <strong>注意:</strong><br>  1)关于?的几种情况<br>    a、放在非量词元字符后面,代表出现0-1次</p>
+<pre><code>b、放在量词元字符后面,代表取消捕获时候的贪婪性,例如:reg=/\d+/; reg.exec(&quot;2015&quot;) -&gt; &quot;2015&quot; 但是如果正则这样写 reg=/\d+?/; reg.exec(&quot;2015&quot;) -&gt; &quot;2&quot;
+
+c、在分组开头加?:,代表当前的分组只是匹配不进行捕获,例如:/^(?:\d+)$/
+
+d、在分组开头加?=,正向预查,例如:/^zhufeng(?=1|2)$/ 只有&quot;zhufeng1&quot;和&quot;zhufeng2&quot;才符合
+
+e、在分组开头加?!,负向预查,例如:/^zhufeng(?!1|2)$/ 除了&quot;zhufeng1&quot;和&quot;zhufeng2&quot;不符合,其他的只要是&quot;zhufeng(任何的东西)&quot;都符合
+</code></pre><p>  [代表本身意思的元字符]<br>  除了以上的,在字面量方式中,我们出现的其他任意字符代表的都是自己本身的意思<br>  <code>var num=12;
+   var reg=/^\w&quot;+num+&quot;$/;</code><br>   -&gt;这里”+num+”不是把变量的值拼接,而这里的不管是”还是+都是元字符<br>   -&gt;对于需要拼接字符串和变量的方式我们只能使用实例方式创建正则</p>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><p>  i -&gt; ignoreCase 忽略字母的大小写<br>  g -&gt; global 全局匹配 (加上g可以解决正则捕获时候的懒惰性)<br>  m -&gt; multiline 多行匹配</p>
+<h2 id="项目中常用的正则"><a href="#项目中常用的正则" class="headerlink" title="项目中常用的正则"></a>项目中常用的正则</h2><p>  1)有效数字的<br>  <code>var reg=/^[+-]?(\d|([1-9]\d+))(\.\d+)?$/;</code></p>
+<p>  2)邮箱的<br>  <code>var reg = /^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;</code></p>
+<p>  3)电话的<br>  <code>var reg = /^1\d{10}$/;</code></p>
+<p>  4)年龄在18-65之间的<br>  <code>var reg = /^((18|19)|([2-5]\d)|(6[0-5]))$/;</code></p>
+<p>  5)中文姓名<br>  <code>var reg = /^[\u4e00-\u9fa5]{2,4}$/;</code></p>
+<p>  6)身份证<br>  <code>var reg = /^(\d{6})(\d{4})(\d{2})(\d{2})(?:\d{2})(\d)(?:\d|X)$/;</code><br>  //-&gt; 130524(省市县) 1994(年) 02(月) 03(日) 30 3(奇数是男偶数是女) 1(数字或者X)</p>
+<h2 id="正则的匹配"><a href="#正则的匹配" class="headerlink" title="正则的匹配"></a>正则的匹配</h2><p>  reg.test([string]) -&gt;true就是匹配成功  false-&gt;匹配不成功</p>
+<h2 id="正则的捕获"><a href="#正则的捕获" class="headerlink" title="正则的捕获"></a>正则的捕获</h2><p>  1)reg.exec([string])<br>    -&gt; 首先去匹配,匹配成功在捕获,返回的是一个数组; 如果匹配不成功返回的是null;<br>    -&gt; 正则的捕获即懒惰又贪婪<br>    -&gt; 解决懒惰性 在正则的末尾增加全局修饰符g<br>    -&gt; 解决贪婪性 在量词后面加?</p>
+
+          
         
       
     </div>
@@ -782,16 +1232,132 @@
       
         
           
+            <p><img src="https://image-static.segmentfault.com/101/495/1014955909-5c368e6aad795" alt="blockchain"></p>
+<p>今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。</p>
+<p>你可以将 API 想象成一个酒保。你向酒保要一杯酒，他们会给你想要的。简单，但是传统的 REST API 有什么问题的呢？</p>
+<p>自从现代 Web 出现以来，构建 Api 并不像听起来那么困难，但是学习和理解 Api 才是比较难。开发人员是大多数据使用你的 API 来构建某些内容或仅使用数据。所以你的 API 应该尽可能的简洁和直观， 好的 API 是非常容易使用和学习的。直观，在开始设计 API 时常要记住的一点。</p>
+<p>我们已经使用 REST 构建 Api 很长时间了。随之而来的也有一些问题，在使用 REST 设计构建 API 时，你会遇到以下问题:</p>
+<p>涉及很多端于开发人员来说，学习和理解你的 API 要困难得多 信息的获取有多有少</p>
+<p>为了解决这些问题，Facebook 创建了 GraphQL。现在，作者认为 GraphQL 是构建 Api 的最佳方式。这篇文章将告诉你为什么要学习了解一下 GraphQL。</p>
+<h2 id="什么是-GraphQL"><a href="#什么是-GraphQL" class="headerlink" title="什么是 GraphQL"></a>什么是 GraphQL</h2><p>GraphQL 是 Facebook 开发的一种开源查询语言。它为我们提供了一种更有效的设计、创建和使用 Api的方法。从根本上说，它是 REST 的替代品。</p>
+<p>GraphQL有很多特性，比如:</p>
+<p>GraphQL查询总是能准确获得你想要的数据，不多不少，所以返回的结果是可预测的， 不再像你使用 REST 那样过度获取信息。</p>
+<p>它为我们提供了同一个端，对于同一个 API，没有版本2或版本3。给 GraphQL API 添加字段和类型而无需影响现有查询，老旧字段可以废弃，从工具中隐藏。</p>
+<p>GraphQL是强类型的，通过它，可以在执行之前验证 GraphQL 类型系统中的查询， 它帮助我们构建更强大的 Api</p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p><code>mkdir graphql-server
+npm init -y</code></p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p><code>npm install --save-dev graphpack</code></p>
+<h3 id="配置运行脚本-package-json"><a href="#配置运行脚本-package-json" class="headerlink" title="配置运行脚本 package.json"></a>配置运行脚本 package.json</h3><p>“scripts”: {<br>    “dev”: “graphpack”,<br>    “build”: “graphpack build”<br>}</p>
+<h3 id="根目录下创建src-并创建schema-graphql-文件"><a href="#根目录下创建src-并创建schema-graphql-文件" class="headerlink" title="根目录下创建src 并创建schema.graphql 文件"></a>根目录下创建src 并创建schema.graphql 文件</h3><p><code>type Query {
+  hello: String
+}</code><br>type 是graphql的语法 后面我们介绍<br>在 schema.graphql 文件将是我们的整个 GraphQL的模式(Schema)</p>
+<h2 id="创建db-js-我们用来模拟数据库"><a href="#创建db-js-我们用来模拟数据库" class="headerlink" title="创建db.js 我们用来模拟数据库"></a>创建db.js 我们用来模拟数据库</h2><p><code>export let users = [
+  { id: 1, name: &quot;John Doe&quot;, email: &quot;john@gmail.com&quot;, age: 22 },
+  { id: 2, name: &quot;Jane Doe&quot;, email: &quot;jane@gmail.com&quot;, age: 23 }
+];</code></p>
+<h3 id="src下创建resolvers-js"><a href="#src下创建resolvers-js" class="headerlink" title="src下创建resolvers.js"></a>src下创建resolvers.js</h3><p><code>import { users } from &quot;./db&quot;;
+const resolvers = {
+  Query: {
+    hello: () =&gt; &quot;Hello World!&quot;
+  }
+};
+export default resolvers;</code><br>resolvers.js 文件是我们提供 GraphQL 操作转换为数据的指令的方式</p>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p><code>npm run dev</code><br><strong>打开<a href="http://localhost:4000会看到以下页面" target="_blank" rel="noopener">http://localhost:4000会看到以下页面</a></strong><br><img src="https://segmentfault.com/img/bVbm34s?w=1301&amp;h=944" alt="blockchain"></p>
+<h3 id="类型（Type）"><a href="#类型（Type）" class="headerlink" title="类型（Type）"></a>类型（Type）</h3><p>类型是 GraphQL 最重要的特性之一。类型是表示 API 外观的自定义对象</p>
+<p>例如，我们要创建一个 User 类型，我们应该有一些 name，email 和 age 字段。 类型字段可以是任何类型，并始终返回一种数据类型，如 Int，Float，String，Boolean，ID，对象类型列表或自定义对象类型</p>
+<p>现在编写第一个type<br><code>type User {
+  id: ID!
+  name: String!
+  email: String!
+  age: Int
+}</code><br>字段结尾的 ！呢？ 感叹号表示字段不可为空</p>
+<h3 id="在GraphQL中，有三个主要概念"><a href="#在GraphQL中，有三个主要概念" class="headerlink" title="在GraphQL中，有三个主要概念:"></a>在GraphQL中，有三个主要概念:</h3><p><strong>query (查询) — 从服务器获取数据的方式</strong><br><strong>mutation (更改) — 修改服务器上的数据并获取更新数据的方法(创建、更新、删除)**</strong><br><strong>**subscription (订阅) — 当希望数据更改时，可以进行消息推送，使用 subscription 类型（针对当前的日趋流行的 real-time 应用提出的）</strong></p>
+<h3 id="query-查询"><a href="#query-查询" class="headerlink" title="query (查询)"></a>query (查询)</h3><p><code>type Query {
+  users: [User!]!
+}</code><br>用户查询将返回给我们一个或多个用户的数组。 它不会返回 null，因为我们放入了 ! ，这意味着它是一个不可为空的查询, 它总会返回一些数据<br>也可以查询固定id用户<br><code>user(id: ID!): User!</code></p>
+<p>现在你的代码是这样的<br><code>type Query {
+  users: [User!]!
+  user(id: ID!): User!
+}</code></p>
+<h3 id="你可能想知道-GraphQL-如何知道从哪里获取数据-这就是为什么我们应该有一个-resolvers-js-文件"><a href="#你可能想知道-GraphQL-如何知道从哪里获取数据-这就是为什么我们应该有一个-resolvers-js-文件" class="headerlink" title="你可能想知道: GraphQL 如何知道从哪里获取数据? 这就是为什么我们应该有一个 resolvers.js 文件"></a>你可能想知道: GraphQL 如何知道从哪里获取数据? 这就是为什么我们应该有一个 resolvers.js 文件</h3><p>resolvers.js 文件内容如下</p>
+<p>`import { users } from “./db”;</p>
+<p>const resolvers = {<br>  Query: {<br>    hello: () =&gt; “Hello World!”<br>  }<br>};</p>
+<p>export default resolvers;`</p>
+<h3 id="现在我们新建一个query查询"><a href="#现在我们新建一个query查询" class="headerlink" title="现在我们新建一个query查询"></a>现在我们新建一个query查询</h3><p>`import { users } from “./db”;</p>
+<p>const resolvers = {<br>  Query: {<br>    user: (parent, { id }, context, info) =&gt; {<br>      return users.find(user =&gt; user.id == id);<br>    },<br>    users: (parent, args, context, info) =&gt; {<br>      return users;<br>    }<br>  }<br>};<br>export default resolvers;`</p>
+<p>现在，解释它是如何工作的：</p>
+<p>每个查询解析器都有四个参数。 在 user 函数中，我们将 id 作为参数传递，然后返回与传递的 id 匹配的特定 user，这很简单。</p>
+<p>在 users 函数中，我们只是返回已存在的 users 数组，这个数组存放的是所有的用户</p>
+<p>现在，我们将测试查询是否工作正常，转到 localhost:4000，输入以下代码</p>
+<p><code>query {
+  users {
+    id
+    name
+    email
+    age
+  }
+}</code></p>
+<p>如下图  你就成功啦<br><img src="https://segmentfault.com/img/bVbm35o?w=1236&amp;h=552" alt="blockchain"></p>
+<p><strong>如果想返回特定的用户</strong><br><code>query {
+  user(id: 1) {
+    id
+    name
+    email
+    age
+  }
+}</code><br>如又下图  你就又成功啦<br><img src="https://segmentfault.com/img/bVbm37L?w=1204&amp;h=486" alt="blockchain"></p>
+<h3 id="mutation-更改"><a href="#mutation-更改" class="headerlink" title="mutation (更改)"></a>mutation (更改)</h3><p>在 schema.graphql文件中编写一个名为mutation 的新类型</p>
+<p><code>type Mutation {
+  createUser(id: ID!, name: String!, email: String!, age: Int): User!
+  updateUser(id: ID!, name: String, email: String, age: Int): User!
+  deleteUser(id: ID!): User!
+}</code></p>
+<p>这里主要定义三个修改数据的方法：<br>createUser：传入需要创建用户的 ID，name，email 和 age，它会返回一个新用户给我们<br>updateUser：传入需要修改用户的 ID，name，email 和 age(非必传)，它会返回一个新用户给我们<br>deleteUser: 传入需要删除用户的 ID，它会返回一个新用户给我们</p>
+<p>现在我们要更改一下resolvers.js  文件内容如下<br>`import { users } from “./db”;<br>const resolvers = {<br>  Query: {<br>    user: (parent, { id }, context, info) =&gt; {<br>      return users.find(user =&gt; user.id == id);<br>    },<br>    users: (parent, args, context, info) =&gt; {<br>      return users;<br>    }<br>  },<br>  Mutation: {<br>    createUser: (parent, { id, name, email, age }, context, info) =&gt; {<br>      const newUser = { id, name, email, age };</p>
+<pre><code>  users.push(newUser);
+
+  return newUser;
+},
+updateUser: (parent, { id, name, email, age }, context, info) =&gt; {
+  let newUser = users.find(user =&gt; user.id === id);
+
+  newUser.name = name;
+  newUser.email = email;
+  newUser.age = age;
+
+  return newUser;
+},
+deleteUser: (parent, { id }, context, info) =&gt; {
+  const userIndex = users.findIndex(user =&gt; user.id === id);
+
+  if (userIndex === -1) throw new Error(&quot;User not found.&quot;);
+
+  const deletedUsers = users.splice(userIndex, 1);
+
+  return deletedUsers[0];
+}
+</code></pre><p>  }<br>};<br>export default resolvers;`</p>
+<p><strong>测试我们的 mutations 是否正常</strong><br>在界面输入<br><code>mutation {
+  createUser(id: 3, name: &quot;Robert&quot;, email: &quot;robert@gmail.com&quot;, age: 21) {
+    id
+    name
+    email
+    age
+  }
+}</code></p>
+<p><img src="https://segmentfault.com/img/bVbm4ch?w=1303&amp;h=420" alt="blockchain"></p>
+<h3 id="subscription-订阅"><a href="#subscription-订阅" class="headerlink" title="subscription (订阅)"></a>subscription (订阅)</h3><p><code>subscription {
+  users {
+    id
+    name
+    email
+    age
+  }
+}</code><br>是不是感觉和query查询一样呢？是的， 但它的工作方式不同。</p>
+<p>当服务器中发生更新时，服务器将运行订阅中指定的 GraphQL 查询，并向客户机发送一个新更新的结果<br>在这篇文章中，我们不打算讨论订阅，如果你感兴趣，请移步<a href="https://graphql.org/" target="_blank" rel="noopener">这里</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如你所见，GraphQL 是一项非常强大的新技术。 它为我们提供了构建更好和精心设计的API的真正能力。 这就是为什么作者建议你现在开始学习它，从本文本作者的角度来说，它最终将取代 REST</p>
+
           
-今天最常讨论的术语之一是 API，很多人不知道 API 到底是什么，API 是 Application Programming Interface(应用程序编程接口)。顾名思义，它是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/18/graphql/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -909,31 +1475,31 @@
           
           
             <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" rel="gallery_ck483o56f0003qas611192ghi" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" rel="gallery_ck484zh830000d4s6oz5krq5q" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807342903&di=412b5e4d9dd861e3842a173742b8795c&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F94o3dSag_xI4khGko9WTAnF6hhy%2Flvpics%2Fs%3D800%2Fsign%3De17f8dbc652762d0843ea9bf90ed0849%2Fd52a2834349b033b1326ce4513ce36d3d439bd86.jpg" itemprop="contentUrl">
               </a>
             
           
             
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" rel="gallery_ck483o56f0003qas611192ghi" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" rel="gallery_ck484zh830000d4s6oz5krq5q" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807422377&di=db42b50ec38ae5d81265c07019bedb5a&imgtype=0&src=http%3A%2F%2Fm.tuniucdn.com%2Ffb2%2Ft1%2FG1%2FM00%2F9A%2F07%2FCii9EFi9LaaINWO-ABENVVXbq-4AAIbzgLB8pAAEQ1t004.jpg" itemprop="contentUrl">
               </a>
             
           
             
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_ck483o56f0003qas611192ghi" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_ck484zh830000d4s6oz5krq5q" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807449324&di=642d4ca3f96d1b707982e48c67d0796f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a304554bfd25000001bf7219acc3.jpg%401280w_1l_2o_100sh.jpg" itemprop="contentUrl">
               </a>
             </div>
           
             <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" rel="gallery_ck483o56f0003qas611192ghi" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" rel="gallery_ck484zh830000d4s6oz5krq5q" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807474357&di=8695aecd41629474d6ac1284513c70f6&imgtype=0&src=http%3A%2F%2Fdimg05.c-ctrip.com%2Fimages%2Ffd%2Ftg%2Fg6%2FM08%2F1F%2F44%2FCggYslcYa_WAGbv9AAJROVon7Ok207_R_1024_10000.jpg" itemprop="contentUrl">
               </a>
             
           
             
-              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_ck483o56f0003qas611192ghi" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" rel="gallery_ck484zh830000d4s6oz5krq5q" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547807305286&di=9b75d2507f8e4faea0915efc8624b911&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01042a5543e3bc0000019ae9a1d7b3.jpg%401280w_1l_2o_100sh.jpg" itemprop="contentUrl">
               </a>
             
@@ -1093,19 +1659,71 @@
       
         
           
-          gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务：搭建web服务器文件保存时自动重载浏览器使用预处理器如Sass、LESS优化资源，比如压缩CSS、JavaScript、压缩图片
-1、安装`npm install gulp -g`
+            <h5 id="gulp-是一个自动化工具，前端开发者可以使用它来处理常见任务："><a href="#gulp-是一个自动化工具，前端开发者可以使用它来处理常见任务：" class="headerlink" title="gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务："></a>gulp 是一个自动化工具，前端开发者可以使用它来处理常见任务：</h5><p>搭建web服务器<br>文件保存时自动重载浏览器<br>使用预处理器如Sass、LESS<br>优化资源，比如压缩CSS、JavaScript、压缩图片</p>
+<h2 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h2><pre><code>`npm install gulp -g`
 
  安装依赖
- `npm install gulp--
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/18/gulp/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+ `npm install gulp--save-dev`
+</code></pre><h2 id="2、使用"><a href="#2、使用" class="headerlink" title="2、使用"></a>2、使用</h2><pre><code>创建gulpfile.js文件
+
+`var gulp=require(&quot;gulp&quot;);
+gulp.task(&quot;default&quot;,function(){
+   console.log(&quot;hello,world&quot;)
+})`
+
+运行
+执行命令 
+`gulp
+</code></pre><h2 id="3、核心api"><a href="#3、核心api" class="headerlink" title="3、核心api"></a>3、核心api</h2><pre><code>`gulp.task()、gulp.src()、gulp.watch()、gulp.dest()`
+
+(1)gulp.src(globs[, options])
+   用来获取流,文件的路径、文件名、内容等信息 使用pipe()通道导入目的地文件夹
+   例：使用数组的方式来匹配多种文件 gulp.src([&apos;js/*.js&apos;,&apos;css/*.css&apos;,&apos;*.html&apos;])
+
+(2)gulp.dest(path[,options])
+   用来写文件
+   `var gulp = require(&apos;gulp&apos;);
+   gulp.src(&apos;script/jquery.js&apos;).pipe(gulp.dest(&apos;dist/foo.js&apos;));`
+   最终生成的文件路径为 dist/foo.js/jquery.js,而不是dist/foo.js
+   改变文件名，可以使用插件gulp-rename
+
+(3)gulp.task(name,[,deps],fn)
+   用来定义任务，只要执行default任务，就相当于把one,two,three这三个任务执行了 
+   `gulp.task(&apos;default&apos;,[&apos;one&apos;,&apos;two&apos;,&apos;three&apos;])`;
+
+ (4)gulp.watch(glob[, opts], tasks)监听文件编号的方法
+   glob 为要监视的文件匹配模式，规则和用法与gulp.src()方法中的glob相同。
+   opts 为一个可选的配置对象，通常不需要用到
+   tasks 为文件变化后要执行的任务，为一个数组
+   例子
+   `gulp.task(&apos;uglify&apos;,function(){ //do something })`
+   `gulp.task(&apos;reload&apos;,function(){ //do something })`                            
+   `gulp.watch(&apos;js/**/*.js&apos;, [&apos;uglify&apos;,&apos;reload&apos;])`;
+   gulp.watch()还有另外一种使用方式
+   `gulp.watch(&apos;js/**/*.js&apos;, function(event){
+       console.log(event.type); //变化类型 added为新增,deleted为删除，changed为改变        console.log(event.path); //变化的文件的路径
+   });`
+</code></pre><h2 id="4、常用的gulp插件"><a href="#4、常用的gulp插件" class="headerlink" title="4、常用的gulp插件"></a>4、常用的gulp插件</h2><pre><code>1、自动加载：gulp-load-plugins
+
+2、重命名：gulp-rename
+
+3、js文件压缩：gulp-uglify
+
+4、css文件压缩：gulp-minify-css
+
+5、html压缩：gulp-minify-html
+
+6、js代码检查：gulp-jshint
+
+7、文件合并：gulp-concat
+
+8、图片压缩：gulp-imagemin
+
+9、自动刷新：gulp-livereload 该插件最好配合谷歌浏览器来使用，且要安装livereload chrome extension扩展插件
+
+10.less,sass编译：gulp-less
+</code></pre>
+          
         
       
     </div>
@@ -1183,7 +1801,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives/">
               
                   <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
@@ -1235,7 +1853,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1253,7 +1871,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -1352,13 +1970,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
 
   
 
