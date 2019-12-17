@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="webpackwebpack是一个现代JavasScript应用程序的模块打包器(module bunder)官方网站https://www.webpackjs.com/">
+<meta name="description" content="webpackwebpack是一个现代JavasScript应用程序的模块打包器(module bunder)">
 <meta name="keywords" content="左眼大梦一场的博客,一个代码的执着者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack">
 <meta property="og:url" content="https://zhaoyibo0124.github.io/2019/12/17/webpack/index.html">
 <meta property="og:site_name" content="左眼大梦一场的博客">
-<meta property="og:description" content="webpackwebpack是一个现代JavasScript应用程序的模块打包器(module bunder)官方网站https://www.webpackjs.com/">
+<meta property="og:description" content="webpackwebpack是一个现代JavasScript应用程序的模块打包器(module bunder)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://zhaoyibo0124.github.io/images/webpack.png">
-<meta property="og:updated_time" content="2019-12-17T03:17:03.003Z">
+<meta property="og:updated_time" content="2019-12-17T08:42:50.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack">
-<meta name="twitter:description" content="webpackwebpack是一个现代JavasScript应用程序的模块打包器(module bunder)官方网站https://www.webpackjs.com/">
+<meta name="twitter:description" content="webpackwebpack是一个现代JavasScript应用程序的模块打包器(module bunder)">
 <meta name="twitter:image" content="https://zhaoyibo0124.github.io/images/webpack.png">
 
 
@@ -330,7 +330,8 @@
       
 
       
-        <p><strong>webpack</strong><br>webpack是一个现代JavasScript应用程序的模块打包器(module bunder)<br>官方网站<a href="https://www.webpackjs.com/" target="_blank" rel="noopener">https://www.webpackjs.com/</a><br><a id="more"></a><br><img src="/images/webpack.png" alt=""></p>
+        <p><strong>webpack</strong><br>webpack是一个现代JavasScript应用程序的模块打包器(module bunder)<br><a id="more"></a><br>官方网站<a href="https://www.webpackjs.com/" target="_blank" rel="noopener">https://www.webpackjs.com/</a></p>
+<p><img src="/images/webpack.png" alt=""></p>
 <p><strong><em>webpack安装</em></strong><br><code>npm install webpack -g</code> // 全局安装<br><code>npm install webpack --save-dev</code> // 项目内安装<br> webpack4版需要去额外安装webpack-cli<br><code>npm install webpack@4 --save-dev</code><br><code>npm install webpack@4 webpack-cli --save-dev</code></p>
 <p><strong><em>入口(entry)</em></strong><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const config = &#123;</span><br><span class="line">    entry: &apos;./path/to/my/entry/file.js&apos;</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = config;</span><br></pre></td></tr></table></figure></p>
 <p><strong><em>输出(output)</em></strong><br>    在 webpack 中配置 output 属性的最低要求是，将它的值设置为一个对象，包括以下两点：<br>        filename 用于输出文件的文件名。<br>        目标输出目录 path 的绝对路径。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const config = &#123;</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;bundle.js&apos;,</span><br><span class="line">        path: &apos;/home/proj/public/assets&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = config;</span><br></pre></td></tr></table></figure></p>

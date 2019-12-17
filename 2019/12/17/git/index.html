@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件 git基本命令    以下命令基于git安装完成之后，如果未安装可以进行命令安装或去官网安装，安装步骤在此不做赘述；    git config –global user.name “xxxx”：配置">
+<meta name="description" content="git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件">
 <meta name="keywords" content="左眼大梦一场的博客,一个代码的执着者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git">
 <meta property="og:url" content="https://zhaoyibo0124.github.io/2019/12/17/git/index.html">
 <meta property="og:site_name" content="左眼大梦一场的博客">
-<meta property="og:description" content="git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件 git基本命令    以下命令基于git安装完成之后，如果未安装可以进行命令安装或去官网安装，安装步骤在此不做赘述；    git config –global user.name “xxxx”：配置">
+<meta property="og:description" content="git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T03:17:09.957Z">
+<meta property="og:updated_time" content="2019-12-17T08:41:59.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git">
-<meta name="twitter:description" content="git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件 git基本命令    以下命令基于git安装完成之后，如果未安装可以进行命令安装或去官网安装，安装步骤在此不做赘述；    git config –global user.name “xxxx”：配置">
+<meta name="twitter:description" content="git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件">
 
 
 
@@ -328,8 +328,7 @@
       
 
       
-        <p><strong>git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件</strong></p>
-<p><strong><em>git基本命令</em></strong><br>    以下命令基于git安装完成之后，如果未安装可以进行命令安装或去官网安装，安装步骤在此不做赘述；<br>    git config –global user.name “xxxx”：配置用户名；<br>    git config –global user.email “<a href="mailto:123@gmail.com" target="_blank" rel="noopener">123@gmail.com</a>“：配置账户；<br>    git config -l:查看配置；<br>    git init：初始化创建一个git仓库，创建之后就会在当前目录生成一个.git的文件；<br>    git add [filename]：添加文件把文件添加到缓冲区；<br>    git add . ：添加所有文件到缓冲区；<br>    git add –all：加all 可以添加被手动删除的文件  二者的区别 加all可以添加被手动删除的文件；<br>    git rm [filename]：删除文件；<br>    git commit -m “提交的说明”:  提交缓冲区的所有修改到仓库(注意：如果修改了文件但是没有add到缓冲区，也是不会被提交的)commit可以一次提交缓冲区的所有文件；<br>    git status：查看状态；<br>    git diff [filename] ：比较提交的文件差异<br>    git log：查看日志；<br>    git reset:版本回退  git log 可以查看到提交的版本号;<br>        –git reset –hard d7b5：  回退到指定版本;<br>        –git reset –hard HEAD^： 回退到上一版本;<br>    git reflog：查看命令历史;<br>    git branch：查看分支;<br>    git branch [branchName]:创建分支;<br>    git checkout [branchName]:切换分支;<br>    git checkout  -b 分支名:创建分支并切换到创建的分支;<br>    git merge 分支名:合并某分支的内容到当前分支;<br>    git branch -d 分支名:删除分支;<br>    git pull:拉取远程代码；<br>    git push：提交代码；<br>    git stash：保存当前进度 （如果当前分支所做的修改你还不想提交，但又需要切换到其他分支去查看，就可以使用该命令）；<br>    .gitignore：忽略那些没必要的提交；</p>
+        <p><strong>git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件</strong><br><a id="more"></a><br><strong><em>git基本命令</em></strong><br>    以下命令基于git安装完成之后，如果未安装可以进行命令安装或去官网安装，安装步骤在此不做赘述；<br>    git config –global user.name “xxxx”：配置用户名；<br>    git config –global user.email “<a href="mailto:123@gmail.com" target="_blank" rel="noopener">123@gmail.com</a>“：配置账户；<br>    git config -l:查看配置；<br>    git init：初始化创建一个git仓库，创建之后就会在当前目录生成一个.git的文件；<br>    git add [filename]：添加文件把文件添加到缓冲区；<br>    git add . ：添加所有文件到缓冲区；<br>    git add –all：加all 可以添加被手动删除的文件  二者的区别 加all可以添加被手动删除的文件；<br>    git rm [filename]：删除文件；<br>    git commit -m “提交的说明”:  提交缓冲区的所有修改到仓库(注意：如果修改了文件但是没有add到缓冲区，也是不会被提交的)commit可以一次提交缓冲区的所有文件；<br>    git status：查看状态；<br>    git diff [filename] ：比较提交的文件差异<br>    git log：查看日志；<br>    git reset:版本回退  git log 可以查看到提交的版本号;<br>        –git reset –hard d7b5：  回退到指定版本;<br>        –git reset –hard HEAD^： 回退到上一版本;<br>    git reflog：查看命令历史;<br>    git branch：查看分支;<br>    git branch [branchName]:创建分支;<br>    git checkout [branchName]:切换分支;<br>    git checkout  -b 分支名:创建分支并切换到创建的分支;<br>    git merge 分支名:合并某分支的内容到当前分支;<br>    git branch -d 分支名:删除分支;<br>    git pull:拉取远程代码；<br>    git push：提交代码；<br>    git stash：保存当前进度 （如果当前分支所做的修改你还不想提交，但又需要切换到其他分支去查看，就可以使用该命令）；<br>    .gitignore：忽略那些没必要的提交；</p>
 
       
     </div>

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="元字符[拥有特殊含义的元字符] \d -&amp;gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&amp;gt;匹配一个除了0-9的任意字符 \w -&amp;gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_] \s -&amp;gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...) \b -&amp;gt; 匹配一个单词的边界********* 开头结尾和空格 \">
+<meta name="description" content="元字符">
 <meta name="keywords" content="左眼大梦一场的博客,一个代码的执着者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则的使用">
 <meta property="og:url" content="https://zhaoyibo0124.github.io/2019/01/18/regular/index.html">
 <meta property="og:site_name" content="左眼大梦一场的博客">
-<meta property="og:description" content="元字符[拥有特殊含义的元字符] \d -&amp;gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&amp;gt;匹配一个除了0-9的任意字符 \w -&amp;gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_] \s -&amp;gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...) \b -&amp;gt; 匹配一个单词的边界********* 开头结尾和空格 \">
+<meta property="og:description" content="元字符">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-16T09:10:32.742Z">
+<meta property="og:updated_time" content="2019-12-17T08:42:41.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则的使用">
-<meta name="twitter:description" content="元字符[拥有特殊含义的元字符] \d -&amp;gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&amp;gt;匹配一个除了0-9的任意字符 \w -&amp;gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_] \s -&amp;gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...) \b -&amp;gt; 匹配一个单词的边界********* 开头结尾和空格 \">
+<meta name="twitter:description" content="元字符">
 
 
 
@@ -328,7 +328,8 @@
       
 
       
-        <h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><pre><code>[拥有特殊含义的元字符]
+        <h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><a id="more"></a>
+<pre><code>[拥有特殊含义的元字符]
 \d -&gt; 匹配一个0-9的数字,相当于[0-9],和它相反的是\D -&gt;匹配一个除了0-9的任意字符
 \w -&gt; 匹配一个0-9、a-z、A-Z、_的数字或字符,相当于[0-9a-zA-Z_]
 \s -&gt; 匹配一个空白字符(空格、制表符(tab这个键)换页符...)
@@ -345,8 +346,7 @@ x|y -&gt; x或者y的一个
 [a-z] -&gt; 匹配a-z中的任意一个字符
 [^a-z] -&gt; 匹配除了a-z中的任意一个字符
 () -&gt; 正则中的分组
-</code></pre><a id="more"></a>
-<p><strong>注意:</strong><br>    1)关于[]<br>        a、[+] -&gt;中括号中出现的所有字符都代表的是本身的意思<br>        b、[12-65] -&gt;这个不是12-65而是1/2-6/5三者中的一个</p>
+</code></pre><p><strong>注意:</strong><br>    1)关于[]<br>        a、[+] -&gt;中括号中出现的所有字符都代表的是本身的意思<br>        b、[12-65] -&gt;这个不是12-65而是1/2-6/5三者中的一个</p>
 <pre><code>2)关于()
     a、分组的作用是改变默认的优先级,例如:/^18|19$/,181、189、119、819、1819...都符合,
     而不是我们认为的18或19,但是改成/^(18|19)$/就是单纯的18或19了
